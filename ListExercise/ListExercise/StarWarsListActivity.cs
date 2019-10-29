@@ -20,11 +20,20 @@ namespace ListExercise
         protected async override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
+            SetContentView(Resource.Layout.starwars_people_layout);
 
-            var queryString = "https://metaweather.com/api/location/search/?query=darth";
-            var data = await Core.Oige.DataService.GetStarWarsPeople(queryString);
-            var people = data;
-            ListAdapter = new StarWarsPeopleAdapter(this, people.Results);
+            var searchField = FindViewById<EditText>(Resource.Id.editText1);
+            var listView = FindViewById<ListView>(Resource.Id.listView1);
+            var searchButton = FindViewById<Button>(Resource.Id.button1);
+
+            searchButton.Click += async delegate
+            {
+                var SearchText = searchField.Text;
+                var queryString = "https://swapi.co/api/people/?search=" + SearchText;
+                var data = await Core.Oige.DataService.GetStarWarsPeople(queryString);
+                listView.Adapter = new StarWarsPeopleAdapter(this, data.Results);
+            };
+
         }
     }
 }
