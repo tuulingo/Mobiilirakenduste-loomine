@@ -28,7 +28,7 @@ namespace ListExercise.Core.Oige
             HttpClient client = new HttpClient();
             var response = await client.GetStringAsync(queryString);
 
-            dynamic data = null;
+            People data = null;
             if (response != null)
             {
                 data = JsonConvert.DeserializeObject<People>(response);
