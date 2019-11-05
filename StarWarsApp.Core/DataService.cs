@@ -13,12 +13,38 @@ namespace StarWarsApp.Core
             HttpClient client = new HttpClient();
             var response = await client.GetStringAsync(queryString);
 
-            People data = null;
+            People Peopledata = null;
             if (response != null)
             {
-                data = JsonConvert.DeserializeObject<People>(response);
+                Peopledata = JsonConvert.DeserializeObject<People>(response);
             }
-            return data;
+            return Peopledata;
+        }
+
+        public static async Task<Starships> GetStarWarsStarships(string queryString)
+        {
+            HttpClient client = new HttpClient();
+            var response = await client.GetStringAsync(queryString);
+
+            Starships Starshipsdata = null;
+            if (response != null)
+            {
+                Starshipsdata = JsonConvert.DeserializeObject<Starships>(response);
+            }
+            return Starshipsdata;
+        }
+
+        public static async Task<Planets> GetStarWarsPlanets(string queryString)
+        {
+            HttpClient client = new HttpClient();
+            var response = await client.GetStringAsync(queryString);
+
+            Planets Planetsdata = null;
+            if (response != null)
+            {
+                Planetsdata = JsonConvert.DeserializeObject<Planets>(response);
+            }
+            return Planetsdata;
         }
     }
 }
