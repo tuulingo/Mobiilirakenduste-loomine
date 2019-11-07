@@ -5,6 +5,10 @@ using Android.Runtime;
 using Android.Widget;
 using StarWarsApp.Core;
 using static StarWarsApp.PeopleAdapter;
+using static StarWarsApp.StarshipsAdapter;
+using static StarWarsApp.PlanetsAdapter;
+using Android.Content;
+using System;
 
 namespace StarWarsApp
 {
@@ -20,7 +24,16 @@ namespace StarWarsApp
             var searchField = FindViewById<EditText>(Resource.Id.searchBarEditText);
             var searchButton = FindViewById<Button>(Resource.Id.searchButton);
             var peopleListView = FindViewById<ListView>(Resource.Id.peopleDataListView);
-            var planetsButton = FindViewById<Button>(Resource.Id.PlanetsButton);
+            var starShipsButton = FindViewById<Button>(Resource.Id.StarShipsButton);
+            var starShipsListView = FindViewById<ListView>(Resource.Id.starShipsListView);
+            var planetsButton = FindViewById<Button>(Resource.Id.planetsButton);
+           // var StarShips_search +=
+
+            void StarShips_search(object sender, EventArgs e) 
+            {
+                var ShipsActivity = new Intent(this, typeof(StarShipsActivity));
+                this.StartActivity(ShipsActivity);
+            }
 
             searchButton.Click += async delegate
             {
@@ -30,11 +43,19 @@ namespace StarWarsApp
                 peopleListView.Adapter = new StarWarsPeopleAdapter(this, Peopledata.Results);
             };
 
-            planetsButton.Click += async delegate
+            starShipsButton.Click += async delegate
             {
+                SetContentView(Resource.Layout.Starships_layout);
                 var queryString = "https://swapi.co/api/starships/";
                 var Starshipsdata = await DataService.GetStarWarsStarships(queryString);
-                peopleListView.Adapter = new StarWarsStarShipsAdapter(this, Starshipsdata.Results);
+                starShipsListView.Adapter = new StarWarsShipsAdapter(this, Starshipsdata.Results);
+            };
+
+            planetsButton.Click += async delegate
+            {
+                var queryString = "https://swapi.co/api/planets/";
+                var Planetsdata = await DataService.GetStarWarsPlanets(queryString);
+                peopleListView.Adapter = new StarWarsPlanetsAdapter(this, Planetsdata.Results);
             };
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)

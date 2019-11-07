@@ -17,10 +17,15 @@
         android:layout_height="wrap_content"
         android:id="@+id/searchButton" />
     <Button
+        android:text="StarShips"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/StarShipsButton" />
+    <Button
         android:text="Planets"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/PlanetsButton" />
+        android:id="@+id/planetsButton" />
     <ListView
         android:minWidth="25px"
         android:minHeight="25px"

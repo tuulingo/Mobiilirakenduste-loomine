@@ -13,20 +13,20 @@ using StarWarsApp.Core.Models;
 
 namespace StarWarsApp
 {
-    class StarshipsAdapter
+    class PlanetsAdapter
     {
-        public class StarWarsShipsAdapter : BaseAdapter<ResultStarships>
+        public class StarWarsPlanetsAdapter : BaseAdapter<ResultPlanets>
         {
-            List<ResultStarships> _items;
+            List<ResultPlanets> _items;
             Activity _context;
 
-            public StarWarsShipsAdapter(Activity context, List<ResultStarships> items) : base()
+            public StarWarsPlanetsAdapter(Activity context, List<ResultPlanets> items) : base()
             {
                 this._context = context;
                 this._items = items;
             }
 
-            public override ResultStarships this[int position]
+            public override ResultPlanets this[int position]
             {
                 get { return _items[position]; }
             }
@@ -44,12 +44,13 @@ namespace StarWarsApp
             public override View GetView(int position, View convertView, ViewGroup parent)
             {
                 var item = _items[position];
+
                 View view = convertView;
                 if (view == null)
-                    view = _context.LayoutInflater.Inflate(Resource.Layout.starShips_row_layout, null);
+                    view = _context.LayoutInflater.Inflate(Resource.Layout.people_row_layout, null);
                 view.FindViewById<TextView>(Resource.Id.textView1).Text = item.Name;
-                view.FindViewById<TextView>(Resource.Id.textView2).Text = item.Model;
-                view.FindViewById<TextView>(Resource.Id.textView3).Text = item.Manufacturer;
+                view.FindViewById<TextView>(Resource.Id.textView2).Text = item.Terrain;
+                view.FindViewById<TextView>(Resource.Id.textView3).Text = item.Population.ToString();
 
                 return view;
             }
