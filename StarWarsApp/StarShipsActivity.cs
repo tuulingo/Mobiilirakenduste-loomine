@@ -9,6 +9,9 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using StarWarsApp.Core;
+using static StarWarsApp.StarshipsAdapter;
+
 
 namespace StarWarsApp
 {
@@ -19,7 +22,12 @@ namespace StarWarsApp
         {
             base.OnCreate(savedInstanceState);
 
-            // Create your application here
+            var starShipsListView = FindViewById<ListView>(Resource.Id.starShipsListView);
+
+            SetContentView(Resource.Layout.Starships_layout);
+            var queryString = "https://swapi.co/api/starships/";
+            var Starshipsdata = DataService.GetStarWarsStarships(queryString);
+           // starShipsListView.Adapter = new StarWarsShipsAdapter(this, Starshipsdata.Results);
         }
     }
 }
