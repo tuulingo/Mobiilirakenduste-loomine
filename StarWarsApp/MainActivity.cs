@@ -22,10 +22,10 @@ namespace StarWarsApp
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.activity_main);
             var searchField = FindViewById<EditText>(Resource.Id.searchBarEditText);
-            var searchButton = FindViewById<Button>(Resource.Id.searchButton);
             var peopleListView = FindViewById<ListView>(Resource.Id.peopleDataListView);
             var starShipsButton = FindViewById<Button>(Resource.Id.StarShipsButton);
             var planetsButton = FindViewById<Button>(Resource.Id.planetsButton);
+            var peopleSearch = FindViewById<Button>(Resource.Id.peopleSearch);
 
             starShipsButton.Click += StarShips_search;
 
@@ -35,13 +35,13 @@ namespace StarWarsApp
                 StartActivity(ShipsActivity);
             };
 
-            searchButton.Click += async delegate
+            peopleSearch.Click += people_Search;
+
+            void people_Search(object sender, EventArgs e)
             {
-                var searchText = searchField.Text;
-                var queryString = "https://swapi.co/api/people/?search=" + searchText;
-                var Peopledata = await DataService.GetStarWarsPeople(queryString);
-                peopleListView.Adapter = new StarWarsPeopleAdapter(this, Peopledata.Results);
-            };
+                var ShipsActivity = new Intent(this, typeof(StarShipsActivity));
+                StartActivity(ShipsActivity);
+            }
 
             planetsButton.Click += async delegate
             {

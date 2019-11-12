@@ -18,7 +18,7 @@ namespace StarWarsApp
     [Activity(Label = "StarShipsActivity")]
     public class StarShipsActivity : Activity
     {
-        protected override void OnCreate(Bundle savedInstanceState)
+        protected async override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
 
@@ -26,8 +26,8 @@ namespace StarWarsApp
 
             SetContentView(Resource.Layout.Starships_layout);
             var queryString = "https://swapi.co/api/starships/";
-            var Starshipsdata = DataService.GetStarWarsStarships(queryString);
-           // starShipsListView.Adapter = new StarWarsShipsAdapter(this, Starshipsdata.Results);
+            var Starshipsdata = await DataService.GetStarWarsStarships(queryString);
+            starShipsListView.Adapter = new StarWarsShipsAdapter(this, Starshipsdata.Results);
         }
     }
 }
