@@ -9,17 +9,22 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using StarWarsApp.Core;
+using static StarWarsApp.PlanetsAdapter;
 
 namespace StarWarsApp
 {
     [Activity(Label = "PlanetsActivity")]
     public class PlanetsActivity : Activity
     {
-        protected override void OnCreate(Bundle savedInstanceState)
+        protected async override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
 
-            // Create your application here
+                var queryString = "https://swapi.co/api/planets/";
+                var Planetsdata = await DataService.GetStarWarsPlanets(queryString);
+                //peopleListView.Adapter = new StarWarsPlanetsAdapter(this, Planetsdata.Results);
+            
         }
     }
 }

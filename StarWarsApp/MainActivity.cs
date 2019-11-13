@@ -21,34 +21,42 @@ namespace StarWarsApp
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.activity_main);
-            var searchField = FindViewById<EditText>(Resource.Id.searchBarEditText);
-            var peopleListView = FindViewById<ListView>(Resource.Id.peopleDataListView);
             var starShipsButton = FindViewById<Button>(Resource.Id.StarShipsButton);
             var planetsButton = FindViewById<Button>(Resource.Id.planetsButton);
-            var peopleSearch = FindViewById<Button>(Resource.Id.peopleSearch);
+            var peopleButton = FindViewById<Button>(Resource.Id.peopleSearch);
+            var filmsButton = FindViewById<Button>(Resource.Id.filmsButton);
 
             starShipsButton.Click += StarShips_search;
 
             void StarShips_search(object sender, EventArgs e) 
             {
-                var ShipsActivity = new Intent(this, typeof(StarShipsActivity));
-                StartActivity(ShipsActivity);
+                var shipsActivity = new Intent(this, typeof(StarShipsActivity));
+                StartActivity(shipsActivity);
             };
 
-            peopleSearch.Click += people_Search;
+            peopleButton.Click += people_Search;
 
             void people_Search(object sender, EventArgs e)
             {
-                var ShipsActivity = new Intent(this, typeof(StarShipsActivity));
-                StartActivity(ShipsActivity);
+                var peopleActivity = new Intent(this, typeof(PeopleActivity));
+                StartActivity(peopleActivity);
             }
 
-            planetsButton.Click += async delegate
+            planetsButton.Click += planets_Search;
+
+            void planets_Search(object sender, EventArgs e)
             {
-                var queryString = "https://swapi.co/api/planets/";
-                var Planetsdata = await DataService.GetStarWarsPlanets(queryString);
-                peopleListView.Adapter = new StarWarsPlanetsAdapter(this, Planetsdata.Results);
-            };
+                var planetsActivity = new Intent(this, typeof(PlanetsActivity));
+                StartActivity(planetsActivity);
+            }
+
+            filmsButton.Click += films_Search;
+
+            void films_Search(object sender, EventArgs e)
+            {
+                var filmsActivity = new Intent(this, typeof(FilmsActivity));
+                StartActivity(filmsActivity);
+            }
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {

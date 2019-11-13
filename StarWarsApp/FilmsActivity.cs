@@ -9,6 +9,8 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using StarWarsApp.Core;
+using static StarWarsApp.FilmsAdapter;
 
 namespace StarWarsApp
 {
@@ -18,8 +20,20 @@ namespace StarWarsApp
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
+            SetContentView(Resource.Layout.search_Layout);
 
-            // Create your application here
+            var searchField = FindViewById<EditText>(Resource.Id.searchBarEditText);
+            var searchButton = FindViewById<Button>(Resource.Id.searchButton);
+            var listView = FindViewById<ListView>(Resource.Id.searchListView);
+
+            searchButton.Click += async delegate
+            {
+                var searchText = searchField.Text;
+                var queryString = "https://swapi.co/api/films/?search=" + searchText;
+                var data = await DataService.GetStarWarsFilms(queryString);
+                listView.Adapter = new StarWarsFilmsAdapter(this, data.Results);
+            };
+
         }
     }
 }
