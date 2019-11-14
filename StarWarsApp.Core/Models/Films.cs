@@ -16,10 +16,10 @@ namespace StarWarsApp.Core.Models
     {
         public string Title { get; set; }
         public long EpisodeId { get; set; }
-        public string OpeningCrawl { get; set; }
+        public string opening_crawl { get; set; }
         public string Director { get; set; }
         public string Producer { get; set; }
-        public DateTimeOffset ReleaseDate { get; set; }
+        public DateTimeOffset release_date { get; set; }
         public List<Uri> Characters { get; set; }
         public List<Uri> Planets { get; set; }
         public List<Uri> Starships { get; set; }

@@ -47,9 +47,9 @@ namespace StarWarsApp
                 View view = convertView;
                 if (view == null)
                     view = _context.LayoutInflater.Inflate(Resource.Layout.starShips_row_layout, null);
-                view.FindViewById<TextView>(Resource.Id.textView1).Text = item.Name;
-                view.FindViewById<TextView>(Resource.Id.textView2).Text = item.Model;
-                view.FindViewById<TextView>(Resource.Id.textView3).Text = item.Manufacturer;
+                view.FindViewById<TextView>(Resource.Id.shipView1).Text = item.Name;
+                view.FindViewById<TextView>(Resource.Id.shipView2).Text = item.Model;
+                view.FindViewById<TextView>(Resource.Id.shipView3).Text = item.Manufacturer;
 
                 return view;
             }

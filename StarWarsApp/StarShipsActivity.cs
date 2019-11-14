@@ -18,16 +18,22 @@ namespace StarWarsApp
     [Activity(Label = "StarShipsActivity")]
     public class StarShipsActivity : Activity
     {
-        protected async override void OnCreate(Bundle savedInstanceState)
+        protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
+            SetContentView(Resource.Layout.search_Layout);
 
-            var starShipsListView = FindViewById<ListView>(Resource.Id.starShipsListView);
+            var searchField = FindViewById<EditText>(Resource.Id.searchBarEditText);
+            var searchButton = FindViewById<Button>(Resource.Id.searchButton);
+            var listView = FindViewById<ListView>(Resource.Id.searchListView);
 
-            SetContentView(Resource.Layout.Starships_layout);
-            var queryString = "https://swapi.co/api/starships/";
-            var Starshipsdata = await DataService.GetStarWarsStarships(queryString);
-            starShipsListView.Adapter = new StarWarsShipsAdapter(this, Starshipsdata.Results);
+            searchButton.Click += async delegate
+            {
+                var searchText = searchField.Text;
+                var queryString = "https://swapi.co/api/starships/?search=" + searchText;
+                var data = await DataService.GetStarWarsStarships(queryString);
+                listView.Adapter = new StarWarsShipsAdapter(this, data.Results);
+            };
         }
     }
 }

@@ -9,6 +9,8 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using StarWarsApp.Core;
+using static StarWarsApp.PeopleAdapter;
 
 namespace StarWarsApp
 {
@@ -18,15 +20,19 @@ namespace StarWarsApp
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
+            SetContentView(Resource.Layout.search_Layout);
 
-            //var peopleSearch = FindViewById<Button>(Resource.Id.peopleSearch);
-            //var searchField = FindViewById<EditText>(Resource.Id.searchBarEditText);
-            //var peopleListView = FindViewById<ListView>(Resource.Id.peopleDataListView);
+            var searchField = FindViewById<EditText>(Resource.Id.searchBarEditText);
+            var searchButton = FindViewById<Button>(Resource.Id.searchButton);
+            var listView = FindViewById<ListView>(Resource.Id.searchListView);
 
-            //var searchText = searchField.Text;
-            //var queryString = "https://swapi.co/api/people/?search=" + searchText;
-            //var Peopledata = await DataService.GetStarWarsPeople(queryString);
-            //peopleListView.Adapter = new StarWarsPeopleAdapter(this, Peopledata.Results);
+            searchButton.Click += async delegate
+            {
+                var searchText = searchField.Text;
+                var queryString = "https://swapi.co/api/people/?search=" + searchText;
+                var data = await DataService.GetStarWarsPeople(queryString);
+                listView.Adapter = new StarWarsPeopleAdapter(this, data.Results);
+            };
         }
     }
 }

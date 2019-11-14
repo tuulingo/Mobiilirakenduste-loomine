@@ -17,14 +17,23 @@ namespace StarWarsApp
     [Activity(Label = "PlanetsActivity")]
     public class PlanetsActivity : Activity
     {
-        protected async override void OnCreate(Bundle savedInstanceState)
+        protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
+            SetContentView(Resource.Layout.search_Layout);
 
-                var queryString = "https://swapi.co/api/planets/";
-                var Planetsdata = await DataService.GetStarWarsPlanets(queryString);
-                //peopleListView.Adapter = new StarWarsPlanetsAdapter(this, Planetsdata.Results);
-            
+            var searchField = FindViewById<EditText>(Resource.Id.searchBarEditText);
+            var searchButton = FindViewById<Button>(Resource.Id.searchButton);
+            var listView = FindViewById<ListView>(Resource.Id.searchListView);
+
+            searchButton.Click += async delegate
+            {
+                var searchText = searchField.Text;
+                var queryString = "https://swapi.co/api/planets/?search=" + searchText;
+                var data = await DataService.GetStarWarsPlanets(queryString);
+                listView.Adapter = new StarWarsPlanetsAdapter(this, data.Results);
+            };
+
         }
     }
 }

@@ -49,8 +49,8 @@ namespace StarWarsApp
                 if (view == null)
                     view = _context.LayoutInflater.Inflate(Resource.Layout.Films_Layout, null);
                 view.FindViewById<TextView>(Resource.Id.filmi_Nimi).Text = item.Title;
-                view.FindViewById<TextView>(Resource.Id.filmi_Aasta).Text = item.ReleaseDate.ToString();
-                view.FindViewById<TextView>(Resource.Id.filmi_Kirjeldus).Text = item.OpeningCrawl;
+                view.FindViewById<TextView>(Resource.Id.filmi_Aasta).Text = item.release_date.ToString();
+                view.FindViewById<TextView>(Resource.Id.filmi_Kirjeldus).Text = item.opening_crawl;
 
                 return view;
             }
