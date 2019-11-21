@@ -46,5 +46,18 @@ namespace StarWarsApp.Core
             }
             return Planetsdata;
         }
+
+        public static async Task<Films> GetStarWarsFilms(string queryString)
+        {
+            HttpClient client = new HttpClient();
+            var response = await client.GetStringAsync(queryString);
+
+            Films FilmsData = null;
+            if (response != null)
+            {
+                FilmsData = JsonConvert.DeserializeObject<Films>(response);
+            }
+            return FilmsData;
+        }
     }
 }

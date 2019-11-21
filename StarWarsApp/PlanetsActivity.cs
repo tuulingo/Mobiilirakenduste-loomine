@@ -10,13 +10,12 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using StarWarsApp.Core;
-using static StarWarsApp.StarshipsAdapter;
-
+using static StarWarsApp.PlanetsAdapter;
 
 namespace StarWarsApp
 {
-    [Activity(Label = "StarShipsActivity")]
-    public class StarShipsActivity : Activity
+    [Activity(Label = "PlanetsActivity")]
+    public class PlanetsActivity : Activity
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -30,10 +29,11 @@ namespace StarWarsApp
             searchButton.Click += async delegate
             {
                 var searchText = searchField.Text;
-                var queryString = "https://swapi.co/api/starships/?search=" + searchText;
-                var data = await DataService.GetStarWarsStarships(queryString);
-                listView.Adapter = new StarWarsShipsAdapter(this, data.Results);
+                var queryString = "https://swapi.co/api/planets/?search=" + searchText;
+                var data = await DataService.GetStarWarsPlanets(queryString);
+                listView.Adapter = new StarWarsPlanetsAdapter(this, data.Results);
             };
+
         }
     }
 }

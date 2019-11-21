@@ -60,8 +60,12 @@
     <Reference Include="System.Numerics.Vectors" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FilmsActivity.cs" />
+    <Compile Include="FilmsAdapter.cs" />
     <Compile Include="MainActivity.cs" />
+    <Compile Include="PeopleActivity.cs" />
     <Compile Include="PeopleAdapter.cs" />
+    <Compile Include="PlanetsActivity.cs" />
     <Compile Include="PlanetsAdapter.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -123,12 +127,17 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\Starships_layout.xml">
+    <AndroidResource Include="Resources\layout\starShips_row_layout.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\starShips_row_layout.xml">
+    <AndroidResource Include="Resources\layout\Films_Layout.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\search_Layout.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

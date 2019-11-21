@@ -5,17 +5,11 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:minWidth="25px"
-        android:minHeight="25px"
-        android:id="@+id/searchBarEditText" />
     <Button
-        android:text="Search"
+        android:text="People"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/searchButton" />
+        android:id="@+id/peopleSearch" />
     <Button
         android:text="StarShips"
         android:layout_width="match_parent"
@@ -26,6 +20,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/planetsButton" />
+    <Button
+        android:text="Films"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/filmsButton" />
     <ListView
         android:minWidth="25px"
         android:minHeight="25px"

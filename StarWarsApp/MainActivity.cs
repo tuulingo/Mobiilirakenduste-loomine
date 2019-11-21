@@ -21,42 +21,42 @@ namespace StarWarsApp
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.activity_main);
-            var searchField = FindViewById<EditText>(Resource.Id.searchBarEditText);
-            var searchButton = FindViewById<Button>(Resource.Id.searchButton);
-            var peopleListView = FindViewById<ListView>(Resource.Id.peopleDataListView);
             var starShipsButton = FindViewById<Button>(Resource.Id.StarShipsButton);
-            var starShipsListView = FindViewById<ListView>(Resource.Id.starShipsListView);
             var planetsButton = FindViewById<Button>(Resource.Id.planetsButton);
-           // var StarShips_search +=
+            var peopleButton = FindViewById<Button>(Resource.Id.peopleSearch);
+            var filmsButton = FindViewById<Button>(Resource.Id.filmsButton);
+
+            starShipsButton.Click += StarShips_search;
 
             void StarShips_search(object sender, EventArgs e) 
             {
-                var ShipsActivity = new Intent(this, typeof(StarShipsActivity));
-                this.StartActivity(ShipsActivity);
+                var shipsActivity = new Intent(this, typeof(StarShipsActivity));
+                StartActivity(shipsActivity);
+            };
+
+            peopleButton.Click += people_Search;
+
+            void people_Search(object sender, EventArgs e)
+            {
+                var peopleActivity = new Intent(this, typeof(PeopleActivity));
+                StartActivity(peopleActivity);
             }
 
-            searchButton.Click += async delegate
-            {
-                var searchText = searchField.Text;
-                var queryString = "https://swapi.co/api/people/?search=" + searchText;
-                var Peopledata = await DataService.GetStarWarsPeople(queryString);
-                peopleListView.Adapter = new StarWarsPeopleAdapter(this, Peopledata.Results);
-            };
+            planetsButton.Click += planets_Search;
 
-            starShipsButton.Click += async delegate
+            void planets_Search(object sender, EventArgs e)
             {
-                SetContentView(Resource.Layout.Starships_layout);
-                var queryString = "https://swapi.co/api/starships/";
-                var Starshipsdata = await DataService.GetStarWarsStarships(queryString);
-                starShipsListView.Adapter = new StarWarsShipsAdapter(this, Starshipsdata.Results);
-            };
+                var planetsActivity = new Intent(this, typeof(PlanetsActivity));
+                StartActivity(planetsActivity);
+            }
 
-            planetsButton.Click += async delegate
+            filmsButton.Click += films_Search;
+
+            void films_Search(object sender, EventArgs e)
             {
-                var queryString = "https://swapi.co/api/planets/";
-                var Planetsdata = await DataService.GetStarWarsPlanets(queryString);
-                peopleListView.Adapter = new StarWarsPlanetsAdapter(this, Planetsdata.Results);
-            };
+                var filmsActivity = new Intent(this, typeof(FilmsActivity));
+                StartActivity(filmsActivity);
+            }
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {

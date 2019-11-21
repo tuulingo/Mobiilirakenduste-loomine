@@ -13,20 +13,20 @@ using StarWarsApp.Core.Models;
 
 namespace StarWarsApp
 {
-    class StarshipsAdapter
+    class FilmsAdapter
     {
-        public class StarWarsShipsAdapter : BaseAdapter<ResultStarships>
+        public class StarWarsFilmsAdapter : BaseAdapter<FilmResult>
         {
-            List<ResultStarships> _items;
+            List<FilmResult> _items;
             Activity _context;
 
-            public StarWarsShipsAdapter(Activity context, List<ResultStarships> items) : base()
+            public StarWarsFilmsAdapter(Activity context, List<FilmResult> items) : base()
             {
                 this._context = context;
                 this._items = items;
             }
 
-            public override ResultStarships this[int position]
+            public override FilmResult this[int position]
             {
                 get { return _items[position]; }
             }
@@ -44,12 +44,13 @@ namespace StarWarsApp
             public override View GetView(int position, View convertView, ViewGroup parent)
             {
                 var item = _items[position];
+
                 View view = convertView;
                 if (view == null)
-                    view = _context.LayoutInflater.Inflate(Resource.Layout.starShips_row_layout, null);
-                view.FindViewById<TextView>(Resource.Id.shipView1).Text = item.Name;
-                view.FindViewById<TextView>(Resource.Id.shipView2).Text = item.Model;
-                view.FindViewById<TextView>(Resource.Id.shipView3).Text = item.Manufacturer;
+                    view = _context.LayoutInflater.Inflate(Resource.Layout.Films_Layout, null);
+                view.FindViewById<TextView>(Resource.Id.filmi_Nimi).Text = item.Title;
+                view.FindViewById<TextView>(Resource.Id.filmi_Aasta).Text = item.release_date.ToString();
+                view.FindViewById<TextView>(Resource.Id.filmi_Kirjeldus).Text = item.opening_crawl;
 
                 return view;
             }
