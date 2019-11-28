@@ -60,6 +60,7 @@
     <Reference Include="System.Numerics.Vectors" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FilmDetailsActivity.cs" />
     <Compile Include="FilmsActivity.cs" />
     <Compile Include="FilmsAdapter.cs" />
     <Compile Include="MainActivity.cs" />
@@ -138,6 +139,11 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\search_Layout.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\film_details_layout.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
