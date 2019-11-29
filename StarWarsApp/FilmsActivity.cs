@@ -10,11 +10,8 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using StarWarsApp.Core;
-using StarWarsApp.Core.Models;
 using static Android.Widget.AdapterView;
 using static StarWarsApp.FilmsAdapter;
-using Newtonsoft.Json;
-using StarwarsApp.Activities;
 
 namespace StarWarsApp
 {
@@ -34,13 +31,20 @@ namespace StarWarsApp
             {
                 var searchText = searchField.Text;
                 var queryString = "https://swapi.co/api/films/?search=" + searchText;
-                var data = await DataService.GetStarWarsFilms(queryString); 
+                var data = await DataService.GetStarWarsFilms(queryString);
                 listView.Adapter = new StarWarsFilmsAdapter(this, data.Results);
             };
 
             listView.ItemClick += (object sender, ItemClickEventArgs e) =>
             {
-                var filmDetails = Films.Results[e.Position];
+                var a = Convert.ToString(listView.GetItemIdAtPosition(e.Position));
+                var b = Convert.ToString(e.Position);
+
+                Context context = Application.Context;
+
+                ToastLength duration = ToastLength.Short;
+                var toast = Toast.MakeText(context , b, duration);
+                toast.Show();
             };
 
         }
