@@ -29,14 +29,25 @@ namespace StarWarsApp
             var filmDetailsTextView4 = FindViewById<TextView>(Resource.Id.filmDetailsTextView4);
 
             var filmDetails = JsonConvert.DeserializeObject<Core.Models.FilmResult>(Intent.GetStringExtra("filmDetails"));
-            Uri uri = filmDetails.characters;
+            //List<Uri> list = new List<Uri>();
+            //list.Add(filmDetails.characters[0]);
+            //list.Add(filmDetails.characters[1]);
+            //list.Add(filmDetails.characters[2]);
+            //list.Add(filmDetails.characters[3]);
+            //list.Add(filmDetails.characters[4]);
+            //list.Add(filmDetails.characters[5]);
+            //list.Add(filmDetails.characters[6]);
+            //list.Add(filmDetails.characters[7]);
+            //list.Add(filmDetails.characters[8]);
+            //list.Add(filmDetails.characters[9]);
+            //list.Add(filmDetails.characters[10]);
 
 
             filmNameTextView.Text = filmDetails.Title;
             filmDetailsTextView1.Text = filmDetails.producer;
             filmDetailsTextView2.Text = filmDetails.director;
-            filmDetailsTextView3.Text = stringList;
-            filmDetailsTextView4.Text = filmDetails.vehicles;
+            //filmDetailsTextView3.Text = filmDetails.characters[0].ToString();
+            //filmDetailsTextView4.Text = filmDetails.vehicles.ToString();
 
         }
     }
