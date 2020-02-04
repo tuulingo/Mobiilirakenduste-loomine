@@ -11,33 +11,19 @@ using Xamarin.Forms.Xaml;
 
 namespace FirstForms
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class NotesPage : ContentPage
-    {
-        public NotesPage()
-        {
-            InitializeComponent();
-        }
+	[XamlCompilation(XamlCompilationOptions.Compile)]
+	public partial class NotesPage : ContentPage
+	{
+		public NotesPage ()
+		{
+			InitializeComponent ();
+		}
 
-        protected override void OnAppearing()
+        protected override async void OnAppearing()
         {
             base.OnAppearing();
 
-            var notes = new List<Note>();
-            var files = Directory.EnumerateFiles(App.FolderPath, "*.notes.txt");
-            foreach (var file in files)
-            {
-                notes.Add(new Note
-                {
-                    Filename = file,
-                    Text = File.ReadAllText(file),
-                    Date = File.GetCreationTime(file)
-                });
-            }
-
-            NotesListView.ItemsSource = notes
-                .OrderBy(d => d.Date)
-                .ToList();
+            NotesListView.ItemsSource = await App.Database.GetNotesAsync();          
         }
 
         async void OnNoteAddedClicked(object sender, EventArgs e)
@@ -47,6 +33,7 @@ namespace FirstForms
                 BindingContext = new Note()
             });
         }
+
         async void OnListViewItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             if(e.SelectedItem != null)
@@ -57,5 +44,7 @@ namespace FirstForms
                 });
             }
         }
+
+
     }
 }

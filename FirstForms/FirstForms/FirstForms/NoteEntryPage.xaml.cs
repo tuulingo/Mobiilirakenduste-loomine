@@ -1,49 +1,36 @@
-﻿using System;
+﻿using FirstForms.Models;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using FirstForms.Models;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using static Android.Provider.ContactsContract.CommonDataKinds;
 
 namespace FirstForms
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class NoteEntryPage : ContentPage
-    {
-        public NoteEntryPage()
-        {
-            InitializeComponent();
-        }
+	[XamlCompilation(XamlCompilationOptions.Compile)]
+	public partial class NoteEntryPage : ContentPage
+	{
+		public NoteEntryPage ()
+		{
+			InitializeComponent ();
+		}
 
-        async void OnSaveButtonClicked(object sender, EventArgs e)
+        async void OnSaveButtonClicked(object sender, System.EventArgs e)
         {
-            var note = (Models.Note)BindingContext;
-            if (string.IsNullOrWhiteSpace(note.Filename))
-            {
-                var filename = Path.Combine(App.FolderPath, $"{Path.GetRandomFileName()}.notes.txt");
-                File.WriteAllText(note.Filename, note.Text);
-            }
-            else
-            {
-                File.WriteAllText(note.Filename, note.Text);
-            }
-
+            var note = (Note)BindingContext;
+            note.Date = DateTime.Now;
+            await App.Database.SaveNoteAsync(note);
             await Navigation.PopAsync();
         }
 
-        async void OnDeleteButtonClicked(object sender, EventArgs e)
+        async void OnDeleteButtonClicked(object sender, System.EventArgs e)
         {
-            var note = (Models.Note)BindingContext;
-            if (File.Exists(note.Filename))
-            {
-                File.Delete(note.Filename);
-            }
-
+            var note = (Note)BindingContext;
+            await App.Database.DeleteNoteAsync(note);
             await Navigation.PopAsync();
         }
     }
