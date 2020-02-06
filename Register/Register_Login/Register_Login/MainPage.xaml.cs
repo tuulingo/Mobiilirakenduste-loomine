@@ -29,18 +29,12 @@ namespace Register_Login
                 var validData = userData.LoginValidate(userNameEntry.Text, passwordEntry.Text);
                 if (validData)
                 {
-                    popupLoadingView.IsVisible = false;
+                    await Navigation.PushAsync(new HomePage());
                 }
                 else
                 {
-                    popupLoadingView.IsVisible = false;
                     await DisplayAlert("Login Failed", "Username or Password Incorrect", "OK");
                 }
-            }
-            else
-            {
-                popupLoadingView.IsVisible = false;
-                await DisplayAlert("He He", "Enter User Name and Password Please", "OK");
             }
         }
 

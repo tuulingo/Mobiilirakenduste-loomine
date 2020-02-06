@@ -19,20 +19,11 @@
                         Clicked="LoginButton_Clicked" HorizontalOptions="CenterAndExpand" Text="Login" TextColor="White" BackgroundColor="#3399ff"/>
                     </StackLayout>
                     <StackLayout Orientation="Vertical"  HorizontalOptions="FillAndExpand" FlexLayout.AlignSelf="Stretch">
-                        <Button x:Name="signUp" FontSize="Medium" TextColor="White" BorderColor="Black" BackgroundColor="#00b33c"  CornerRadius="5"
+                        <Button x:Name="signUp" FontSize="Medium" TextColor="White" BorderColor="Black" BackgroundColor="Red"  CornerRadius="5"
                         FlexLayout.AlignSelf="Stretch"  Clicked="SignUp_Clicked" HorizontalOptions="CenterAndExpand" Text="Sign Up"/>
                     </StackLayout>
                 </StackLayout>
             </FlexLayout>
-            <!--<ContentView x:Name="popupLoadingView" BackgroundColor="#C0808080" Padding="0, 0" IsVisible="false" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All">
-                <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
-                    <StackLayout x:Name="stackIncrese1" Orientation="Vertical" HeightRequest="150" WidthRequest="300" BackgroundColor="White">
-                        <Label x:Name="labelenter" Text="Enter User Mail id" VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand"></Label>
-                        <Entry x:Name="useridValidationEntry" Keyboard="Email" IsPassword="True" Placeholder="Enter User id Here" TextColor="Black" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" ></Entry>
-                        <Button x:Name="UpdateButton" Clicked="userIdCheckEvent" BackgroundColor="#ff6600-" Text="Check" HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand"/>
-                    </StackLayout>
-                </StackLayout>
-            </ContentView>-->
         </RelativeLayout>
     </ContentPage.Content>
 
