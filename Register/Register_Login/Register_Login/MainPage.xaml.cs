@@ -39,8 +39,8 @@ namespace Register_Login
         }
 
         private async void SignUp_Clicked(object sender, EventArgs e)
-        { 
-
+        {
+            await Navigation.PushAsync(new RegistrationPage());
         }
         
 
