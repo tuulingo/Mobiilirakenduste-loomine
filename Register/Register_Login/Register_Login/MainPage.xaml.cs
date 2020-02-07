@@ -29,7 +29,7 @@ namespace Register_Login
                 var validData = userData.LoginValidate(userNameEntry.Text, passwordEntry.Text);
                 if (validData)
                 {
-                    await Navigation.PushAsync(new HomePage());
+                    await Navigation.PushModalAsync(new HomePage());
                 }
                 else
                 {
@@ -40,7 +40,7 @@ namespace Register_Login
 
         private async void SignUp_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new RegistrationPage());
+            await Navigation.PushModalAsync(new RegistrationPage());
         }
         
 

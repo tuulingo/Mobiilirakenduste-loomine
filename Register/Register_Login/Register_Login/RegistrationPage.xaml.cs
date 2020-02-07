@@ -71,7 +71,7 @@ namespace Register_Login
         }
         private async void login_ClickedEvent(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new MainPage());
+            await Navigation.PushModalAsync(new MainPage());
         }
     }
 }

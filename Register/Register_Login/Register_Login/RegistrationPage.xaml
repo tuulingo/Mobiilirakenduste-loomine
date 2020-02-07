@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:Register_Login"
              x:Class="Register_Login.RegistrationPage" Title="Sign Up Page"
-             x:Name="RegistrationPage">
+             x:Name="Registration">
     <ContentPage.Content>
         <AbsoluteLayout Margin="5,0,5,5">
             <FlexLayout IsVisible="True" JustifyContent="SpaceEvenly" Direction="Column" AlignItems="Center" Margin="30,0,30,0" >
