@@ -6,22 +6,42 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
+             BackgroundColor="Beige"  
              x:Class="MvvmTutorial.MainPage">
-
+           
     <ContentPage.BindingContext>
         <vm:MainViewModel/>
     </ContentPage.BindingContext>
     <ContentPage.Resources>
         <local:DoubleRoundingConverter x:Key="stringConverter"/>
+        <Style TargetType="Label">
+            <Setter Property="FontSize" Value="Large"/>
+            <Setter Property="TextColor" Value="Black"/>
+        </Style>
     </ContentPage.Resources>
-    <StackLayout VerticalOptions="CenterAndExpand">
-        <!-- Place new controls here -->
-        <Entry Text="{Binding SubTotal}"></Entry>
-        <Slider Value="{Binding Generosity, Converter={StaticResource stringConverter}"></Slider>
-        <Label Text="{Binding Tip}"
-           HorizontalOptions="Center"
-           VerticalOptions="CenterAndExpand" />
-        <Label Text="{Binding Total}"></Label>
+    <StackLayout  >
+        <StackLayout Margin="20, 70, 20 ,20">
+            <Label
+               HorizontalTextAlignment="Center">
+                Summa ilma jootrahata
+            </Label>
+            <Entry Text="{Binding SubTotal}" TextColor="Black" HorizontalTextAlignment="Center"/>
+            <Label 
+               HorizontalTextAlignment="Center">Jootraha protsent</Label>
+            <Slider ThumbColor="#e81e62" Value="{Binding Generosity, Converter={StaticResource stringConverter}}"  />
+            <Label
+               HorizontalTextAlignment="Center">Jootraha</Label>
+            <Label Text="{Binding Tip}" 
+                HorizontalOptions="Center"/>
+        </StackLayout>
+        <StackLayout HeightRequest="100"                      
+            BackgroundColor="#e81e62" 
+            VerticalOptions="EndAndExpand">
+            <Label VerticalOptions="CenterAndExpand" 
+                   HorizontalTextAlignment="Center">Summa koos jootrahaga</Label>
+            <Label FontSize="40" VerticalOptions="CenterAndExpand" TextColor="Black" Text="{Binding Total}" 
+                    HorizontalOptions="Center"/>
+        </StackLayout>
     </StackLayout>
 
 </ContentPage>

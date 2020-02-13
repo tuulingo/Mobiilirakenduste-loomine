@@ -83,7 +83,7 @@ namespace MvvmTutorial.ViewModels
 
         private void Recalculate()
         {
-            Math.Round(Tip = SubTotal * Generosity);
+            Tip = SubTotal * Generosity;
             Total = Tip + SubTotal;
         }
     }
