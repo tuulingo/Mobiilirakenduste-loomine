@@ -8,14 +8,28 @@
     <ContentPage.Content>
         <StackLayout>
             <Label>Languages</Label>
-            <ListView>
-                <ListView.ItemsSource>
-                    <x:Array Type="{x:Type x:String}">
-                        <x:String>Arabic</x:String>
-                        <x:String>Germany</x:String>
-                        <x:String>Estonia</x:String>
-                    </x:Array>
-                </ListView.ItemsSource>
+            <ListView ItemsSource="{Binding Languages}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid Padding="10">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Column="1"
+                                       Text="{Binding Name}"/>
+                                <Label Grid.Row="1"
+                                       Grid.Column="1" 
+                                       Text="{Binding ShortName}"/>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
             </ListView>
         </StackLayout>
     </ContentPage.Content>
