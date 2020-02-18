@@ -5,6 +5,7 @@
              xmlns:local ="clr-namespace:MvvmTutorial; assembly=MvvmTutorial"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
+             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
              x:Class="MvvmTutorial.FirstTabbedPage">
   <!--Pages can be added as references or inline-->
     <local:MainPage Title="TipCalc"/>

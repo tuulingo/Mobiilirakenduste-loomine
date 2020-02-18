@@ -2,16 +2,11 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace MvvmTutorial
+namespace MvvmTutorial.Models
 {
     public class Language
     {
         public string Name { get; set; }
         public string ShortName { get; set; }
-
-        public override string ToString()
-        {
-            return Name;
-        }
     }
 }

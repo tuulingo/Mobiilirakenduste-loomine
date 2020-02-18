@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,18 +13,14 @@ namespace MvvmTutorial
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LanguagesPage : ContentPage
     {
-        public IList<Language> Languages { get; private set; }
-
         public LanguagesPage()
         {
             InitializeComponent();
+        }
 
-            Languages = new List<Language>();
-            Languages.Add(new Language { Name = "Arabic", ShortName = "ARAB"});
-            Languages.Add(new Language { Name = "Estonia", ShortName = "EE" });
-            Languages.Add(new Language { Name = "Germany", ShortName = "GER" });
-
-            BindingContext = this;
+        void OnListViewItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            LanguageViewModel selectedItem = e.SelectedItem as LanguageViewModel;
         }
 
     }
