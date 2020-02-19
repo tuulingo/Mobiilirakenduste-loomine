@@ -3,8 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:MvvmTutorial.ViewModels;assembly=MvvmTutorial"
+             xmlns:vm1="clr-namespace:MvvmTutorial"
              mc:Ignorable="d"
              x:Class="MvvmTutorial.LanguagesPage">
+    <ContentPage.BindingContext>
+        <vm1:LanguageViewModel/>
+    </ContentPage.BindingContext>
     <ContentPage.Content>
         <StackLayout>
             <Label FontSize="Header">Languages</Label>
