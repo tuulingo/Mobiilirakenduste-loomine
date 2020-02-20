@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:MvvmTutorial.ViewModels;assembly=MvvmTutorial"
+             mc:Ignorable="d"
+             x:Class="MvvmTutorial.PicturesPage">
+    <ContentPage.BindingContext>
+        <vm:PictureViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout>
+            <Label FontSize="Header">Pictures</Label>
+            <ListView ItemsSource="{Binding Pictures}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                <Image Aspect="AspectFit" HeightRequest="300" Source="{Binding ImageUrl}"></Image>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label HorizontalOptions="Start" Text="{Binding Title}"/>
+                                    <Label HorizontalOptions="EndAndExpand" Text="{Binding Date}"/>
+                                </StackLayout>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

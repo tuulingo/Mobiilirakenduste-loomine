@@ -10,4 +10,5 @@
   <!--Pages can be added as references or inline-->
     <local:MainPage Title="TipCalc"/>
     <local:SettingsPage Title="Settings"/>
+    <local:PicturesPage Title="Pictures"/>
 </TabbedPage>
