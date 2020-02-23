@@ -6,9 +6,10 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+             android:TabbedPage.ToolbarPlacement="Bottom"
              x:Class="MvvmTutorial.FirstTabbedPage">
   <!--Pages can be added as references or inline-->
-    <local:MainPage Title="TipCalc"/>
-    <local:SettingsPage Title="Settings"/>
+    <local:MainPage Title="TipCalc" android:Icon="dalla.jpg"/>
+    <local:SettingsPage Title="Settings" android:Icon="Pictures.png"/>
     <local:PicturesPage Title="Pictures"/>
 </TabbedPage>

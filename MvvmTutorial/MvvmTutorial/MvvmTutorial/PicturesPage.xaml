@@ -12,12 +12,12 @@
     <ContentPage.Content>
         <StackLayout>
             <Label FontSize="Header">Pictures</Label>
-            <ListView ItemsSource="{Binding Pictures}">
+            <ListView ItemsSource="{Binding Pictures}" VerticalOptions="FillAndExpand" HasUnevenRows="true">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                                <Image Aspect="AspectFit" HeightRequest="300" Source="{Binding ImageUrl}"></Image>
+                            <StackLayout Orientation="Vertical" Margin="20, 0, 20, 0" VerticalOptions="FillAndExpand">
+                                <Image MinimumHeightRequest="600" Source="{Binding ImageUrl}" Aspect="Fill"></Image>
                                 <StackLayout Orientation="Horizontal">
                                     <Label HorizontalOptions="Start" Text="{Binding Title}"/>
                                     <Label HorizontalOptions="EndAndExpand" Text="{Binding Date}"/>
