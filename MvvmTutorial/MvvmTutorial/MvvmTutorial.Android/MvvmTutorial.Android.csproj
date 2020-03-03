@@ -15,7 +15,6 @@
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
-    <AndroidUseLatestPlatformSdk>false</AndroidUseLatestPlatformSdk>
     <TargetFrameworkVersion>v9.0</TargetFrameworkVersion>
     <AndroidEnableSGenConcurrent>true</AndroidEnableSGenConcurrent>
     <AndroidUseAapt2>true</AndroidUseAapt2>
@@ -89,7 +88,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MvvmTutorial\MvvmTutorial.csproj">
-      <Project>{36696E20-A424-4E8B-A2B5-D8262C421720}</Project>
+      <Project>{DEE7775D-0CF7-491F-A4A4-9622FDB5BF68}</Project>
       <Name>MvvmTutorial</Name>
     </ProjectReference>
   </ItemGroup>

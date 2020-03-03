@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Xamarin.Forms;
 
 namespace MvvmTutorial.Models
 {
@@ -8,6 +9,8 @@ namespace MvvmTutorial.Models
     {
         public string Title { get; set; }
         public DateTime Date { get; set; }
-        public string ImageUrl { get; set; }
+        public String PickPhoto { get; set; }
+        public String TakePhoto { get; set; }
+
     }
 }
