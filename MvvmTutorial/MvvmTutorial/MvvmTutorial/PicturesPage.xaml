@@ -12,31 +12,24 @@
     <ContentPage.Content>
         <StackLayout>
             <Label FontSize="Header">Pictures</Label>
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-
-                <Image x:Name="PhotoImage" />
-                <Button x:Name="CameraButton" Text="Take Photo" Grid.Row="1" />
-            </Grid>
-            <!--<ListView ItemsSource="{Binding Pictures}" VerticalOptions="FillAndExpand" HasUnevenRows="true">
+            <Image x:Name="PhotoImage" Source="{Binding PhotoImage}" />
+                <Button x:Name="CameraButton" Text="Take a Photo"  />
+                <Button x:Name="PickAPhotoButton" Text="Pick a Photo"  />
+                <ListView ItemsSource="{Binding Pictures}" VerticalOptions="FillAndExpand" HasUnevenRows="true">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <StackLayout Orientation="Vertical" Margin="20, 0, 20, 20" VerticalOptions="FillAndExpand">
-                                <Image MinimumHeightRequest="600" Source="{Binding ImageUrl}" Aspect="Fill"></Image>
+                                <Image MinimumHeightRequest="600" Source="{Binding PhotoImage}" Aspect="Fill"></Image>
                                 <StackLayout Orientation="Horizontal">
                                     <Label HorizontalOptions="Start" Text="{Binding Title}"/>
                                     <Label HorizontalOptions="EndAndExpand" Text="{Binding Date}"/>
                                 </StackLayout>
-                                <Button Text="Capture a picture" x:Name="captureButton"></Button>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
-            </ListView>-->
+            </ListView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

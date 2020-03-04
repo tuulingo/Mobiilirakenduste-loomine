@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Plugin.Media;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,6 +18,7 @@ namespace MvvmTutorial
             InitializeComponent();
 
             CameraButton.Clicked += CameraButton_Clicked;
+            PickAPhotoButton.Clicked += PickAPhotoButton_Clicked;
         }
         private async void CameraButton_Clicked(object sender, EventArgs e)
         {
@@ -26,15 +28,25 @@ namespace MvvmTutorial
                 PhotoImage.Source = ImageSource.FromStream(() => { return photo.GetStream(); });
         }
 
-        private static Random random = new Random();
-        public static string RandomName(int length)
+        private async void PickAPhotoButton_Clicked(object sender, EventArgs e)
         {
-            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-            return new string(Enumerable.Repeat(chars, length)
-              .Select(s => s[random.Next(s.Length)]).ToArray());
+            await CrossMedia.Current.Initialize();
+
+            var file = await CrossMedia.Current.PickPhotoAsync();
+            PhotoImage.Source = ImageSource.FromStream(() =>
+            {
+                
+                if (file == null)
+                {
+                    return null;
+                };
+                var stream = file.GetStream();
+                file.Dispose();
+                return stream;
+            });
         }
 
-        //https://www.youtube.com/watch?v=DJYLrVNY2ak
+
 
     }
 }
