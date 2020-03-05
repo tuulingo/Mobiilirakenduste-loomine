@@ -44,20 +44,21 @@ namespace MvvmTutorial.ViewModels
 
         public async void PickPhoto() 
         {
-            //await CrossMedia.Current.Initialize();
+            /*await CrossMedia.Current.Initialize();
 
-            //var file = await CrossMedia.Current.PickPhotoAsync();
-            //PhotoImage = ImageSource.FromStream(() =>
-            //{
+            var file = await CrossMedia.Current.PickPhotoAsync();
+            PhotoImage = ImageSource.FromStream(() =>
+            {
 
-            //    if (file == null)
-            //    {
-            //        return null;
-            //    };
-            //    var stream = file.GetStream();
-            //    file.Dispose();
-            //    return stream;
-            //});
+                if (file == null)
+                {
+                    return null;
+                };
+                var stream = file.GetStream();
+                file.Dispose();
+                return stream;
+                
+            });*/
         }
     }
 }

@@ -12,15 +12,15 @@
     <ContentPage.Content>
         <StackLayout>
             <Label FontSize="Header">Pictures</Label>
+            <Button x:Name="CameraButton" Text="Take a Photo"  />
+            <Button x:Name="PickAPhotoButton" Text="Pick a Photo"  />
             <Image x:Name="PhotoImage" Source="{Binding PhotoImage}" />
-                <Button x:Name="CameraButton" Text="Take a Photo"  />
-                <Button x:Name="PickAPhotoButton" Text="Pick a Photo"  />
-                <ListView ItemsSource="{Binding Pictures}" VerticalOptions="FillAndExpand" HasUnevenRows="true">
+                <ListView VerticalOptions="FillAndExpand" HasUnevenRows="true">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <StackLayout Orientation="Vertical" Margin="20, 0, 20, 20" VerticalOptions="FillAndExpand">
-                                <Image MinimumHeightRequest="600" Source="{Binding PhotoImage}" Aspect="Fill"></Image>
+                                <Image MinimumHeightRequest="600" Source="{Binding Pictures}"  Aspect="Fill"></Image>
                                 <StackLayout Orientation="Horizontal">
                                     <Label HorizontalOptions="Start" Text="{Binding Title}"/>
                                     <Label HorizontalOptions="EndAndExpand" Text="{Binding Date}"/>
