@@ -2,9 +2,11 @@
 using Plugin.Media;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace MvvmTutorial.ViewModels
@@ -28,16 +30,23 @@ namespace MvvmTutorial.ViewModels
 
         public PictureViewModel()
         {
+            Pictures = new ObservableCollection<PictureModel>();
+            TakePictureCommand = new Command(CameraButton_Clicked);
+        }
 
-            Pictures = new List<PictureModel>();
-            Pictures.Add(new PictureModel { Title = RandomString(10), Date = DateTime.Now/*, PickPhoto = PickPhoto */});
-            Pictures.Add(new PictureModel { Title = RandomString(10), Date = DateTime.Now/*, PickPhoto = */ });
-            Pictures.Add(new PictureModel { Title = RandomString(10), Date = DateTime.Now/*, PhotoImage = PickPhoto()*/});
+        new ICommand TakePictureCommand;
+
+        private async void CameraButton_Clicked()
+        {
+            var photo = await Plugin.Media.CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions() { });
+
+            if (photo != null)
+                Image.Source = ImageSource.FromStream(() => { return photo.GetStream(); });
         }
 
 
 
-        public List<PictureModel> Pictures
+        public ObservableCollection<PictureModel> Pictures
         {
             get; set;
         }

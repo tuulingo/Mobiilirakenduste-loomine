@@ -8,6 +8,7 @@
              x:Class="MvvmTutorial.PicturesPage">
     <ContentPage.BindingContext>
         <vm:PictureViewModel/>
+
     </ContentPage.BindingContext>
     <ContentPage.Content>
         <StackLayout>
@@ -20,7 +21,7 @@
                     <DataTemplate>
                         <ViewCell>
                             <StackLayout Orientation="Vertical" Margin="20, 0, 20, 20" VerticalOptions="FillAndExpand">
-                                <Image MinimumHeightRequest="600" Source="{Binding Pictures}"  Aspect="Fill"></Image>
+                                <Image MinimumHeightRequest="600" Source="{Binding Image}"  Aspect="Fill"></Image>
                                 <StackLayout Orientation="Horizontal">
                                     <Label HorizontalOptions="Start" Text="{Binding Title}"/>
                                     <Label HorizontalOptions="EndAndExpand" Text="{Binding Date}"/>
@@ -30,6 +31,7 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+            <Button Command=""></Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
