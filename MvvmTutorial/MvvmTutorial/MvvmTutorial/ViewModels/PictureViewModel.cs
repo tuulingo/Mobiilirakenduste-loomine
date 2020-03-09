@@ -31,19 +31,10 @@ namespace MvvmTutorial.ViewModels
         public PictureViewModel()
         {
             Pictures = new ObservableCollection<PictureModel>();
-            TakePictureCommand = new Command(CameraButton_Clicked);
+            TakePictureCommand = new Command(OnTakePictureCommand);
         }
 
-        new ICommand TakePictureCommand;
-
-        private async void CameraButton_Clicked()
-        {
-            var photo = await Plugin.Media.CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions() { });
-
-            if (photo != null)
-                Image.Source = ImageSource.FromStream(() => { return photo.GetStream(); });
-        }
-
+        public ICommand TakePictureCommand { get; private set;}
 
 
         public ObservableCollection<PictureModel> Pictures
@@ -51,23 +42,36 @@ namespace MvvmTutorial.ViewModels
             get; set;
         }
 
-        public async void PickPhoto() 
+        public async void OnTakePictureCommand() 
         {
-            /*await CrossMedia.Current.Initialize();
+            await CrossMedia.Current.Initialize();
 
-            var file = await CrossMedia.Current.PickPhotoAsync();
-            PhotoImage = ImageSource.FromStream(() =>
+            if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
             {
+                await Application.Current.MainPage.DisplayAlert("Alert", "Camera can't be opened right now", "OK");
+                return;
+            }
 
-                if (file == null)
-                {
-                    return null;
-                };
+            var file = await CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions
+            {
+                Directory = "Sample",
+                Name = "test.jpg"
+            });
+            if (file == null)
+                return;
+
+            var image = new PictureModel();
+            image.Title = RandomString(8);
+            //image.Image = ImageSource.FromStream(file.Path);
+
+
+            image.Image = ImageSource.FromStream(() =>
+            {
                 var stream = file.GetStream();
-                file.Dispose();
                 return stream;
-                
-            });*/
+            });
+
+            Pictures.Add(image);
         }
     }
 }

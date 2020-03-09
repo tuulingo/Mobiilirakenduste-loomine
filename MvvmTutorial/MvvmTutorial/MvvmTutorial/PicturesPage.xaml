@@ -8,15 +8,13 @@
              x:Class="MvvmTutorial.PicturesPage">
     <ContentPage.BindingContext>
         <vm:PictureViewModel/>
-
     </ContentPage.BindingContext>
     <ContentPage.Content>
         <StackLayout>
             <Label FontSize="Header">Pictures</Label>
             <Button x:Name="CameraButton" Text="Take a Photo"  />
             <Button x:Name="PickAPhotoButton" Text="Pick a Photo"  />
-            <Image x:Name="PhotoImage" Source="{Binding PhotoImage}" />
-                <ListView VerticalOptions="FillAndExpand" HasUnevenRows="true">
+            <ListView VerticalOptions="FillAndExpand" HasUnevenRows="true">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -31,7 +29,7 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <Button Command=""></Button>
+            <Button Command="{Binding TakePictureCommand}" Text="Take a Picture"></Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
