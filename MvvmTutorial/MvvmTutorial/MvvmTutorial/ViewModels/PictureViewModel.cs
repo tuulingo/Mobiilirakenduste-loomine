@@ -1,5 +1,6 @@
 ﻿using MvvmTutorial.Models;
 using Plugin.Media;
+using Plugin.Media.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -32,14 +33,46 @@ namespace MvvmTutorial.ViewModels
         {
             Pictures = new ObservableCollection<PictureModel>();
             TakePictureCommand = new Command(OnTakePictureCommand);
+            PickPictureCommand = new Command(OnPickPictureCommand);
         }
 
         public ICommand TakePictureCommand { get; private set;}
+        public ICommand PickPictureCommand { get; private set; }
 
 
         public ObservableCollection<PictureModel> Pictures
         {
             get; set;
+        }
+
+        public async void OnPickPictureCommand()
+        {
+            await CrossMedia.Current.Initialize();
+
+            if (!CrossMedia.Current.IsPickPhotoSupported)
+            {
+                await Application.Current.MainPage.DisplayAlert("Photos Not supported", "Permission not granted", "Ok");
+                return;
+            }
+
+            var file = await CrossMedia.Current.PickPhotoAsync(new Plugin.Media.Abstractions.PickMediaOptions
+            {
+                PhotoSize = PhotoSize.Full
+            });
+
+            var image = new PictureModel();
+            image.Title = RandomString(8);
+            image.Date = DateTime.Now;
+            
+            image.Image = ImageSource.FromStream(() =>
+            {
+
+                var stream = file.GetStream();
+                file.Dispose();
+                return stream;
+            });
+
+            Pictures.Add(image);
         }
 
         public async void OnTakePictureCommand() 
@@ -62,8 +95,8 @@ namespace MvvmTutorial.ViewModels
 
             var image = new PictureModel();
             image.Title = RandomString(8);
-            //image.Image = ImageSource.FromStream(file.Path);
-
+            image.Date = DateTime.Now;
+            
 
             image.Image = ImageSource.FromStream(() =>
             {
