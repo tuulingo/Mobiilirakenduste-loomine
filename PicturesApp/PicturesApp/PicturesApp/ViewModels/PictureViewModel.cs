@@ -1,4 +1,4 @@
-﻿using MvvmTutorial.Models;
+﻿using PicturesApp.Models;
 using Plugin.Media;
 using Plugin.Media.Abstractions;
 using System;
@@ -10,12 +10,10 @@ using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
 
-
-namespace MvvmTutorial.ViewModels
+namespace PicturesApp.ViewModels
 {
     public class PictureViewModel : BindableObject
     {
-
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected void OnPropertyChanged(string Name)
@@ -30,12 +28,9 @@ namespace MvvmTutorial.ViewModels
             return new string(Enumerable.Repeat(chars, length)
               .Select(s => s[random.Next(s.Length)]).ToArray());
         }
-        //INavigation navigation
-        //public INavigation Navigation { get; set; }
-        //            this.Navigation = navigation;
+
         public PictureViewModel()
         {
-
             Pictures = new ObservableCollection<PictureModel>();
             TakePictureCommand = new Command(OnTakePictureCommand);
             PickPictureCommand = new Command(OnPickPictureCommand);
@@ -72,14 +67,16 @@ namespace MvvmTutorial.ViewModels
             image.Image = ImageSource.FromStream(() =>
             {
 
-                var stream = file.GetStream();
-                file.Dispose();
-                return stream;
+                if (file != null)
+                {
+                    var stream = file.GetStream();
+                    file.Dispose();
+                    return stream;
+                }
+                return null;
+
             });
 
-            //var picture = (PictureModel)BindingContext;
-            //await App.Database.SavePicturesAsync(picture);
-            //await Navigation.PopAsync();
             Pictures.Add(image);
         }
 

@@ -1,50 +1,48 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using MvvmTutorial.Models;
 using SQLite;
 
 namespace MvvmTutorial.Data
 {
     public class PictureDb
     {
-        public PictureDb()
+        SQLiteAsyncConnection _database;
+
+        public PictureDb(string dbPath)
         {
-            SQLiteAsyncConnection _database;
+            _database = new SQLiteAsyncConnection(dbPath);
+            _database.CreateTableAsync<PictureModel>().Wait();
+        }
 
-            public PictureDb(string dbPath)
-            {
-                _database = new SQLiteAsyncConnection(dbPath);
-                _database.CreateTableAsync<Note>().Wait();
-            }
+        public Task<List<PictureModel>> GetPicturesAsync()
+        {
+            return _database.Table<PictureModel>().ToListAsync();
+        }
 
-            public Task<List<Note>> GetNotesAsync()
-            {
-                return _database.Table<Note>().ToListAsync();
-            }
+        public Task<PictureModel> GetPictureAsync(int id)
+        {
+            return _database.Table<PictureModel>()
+                .Where(x => x.ID == id)
+                .FirstOrDefaultAsync();
+        }
 
-            public Task<Note> GetNoteAsync(int id)
+        public Task<int> SavePicturesAsync(PictureModel picture)
+        {
+            if (picture.ID != 0)
             {
-                return _database.Table<Note>()
-                    .Where(x => x.ID == id)
-                    .FirstOrDefaultAsync();
+                return _database.UpdateAsync(picture);
             }
+            else
+            {
+                return _database.InsertAsync(picture);
+            }
+        }
 
-            public Task<int> SaveNoteAsync(Note note)
-            {
-                if (note.ID != 0)
-                {
-                    return _database.UpdateAsync(note);
-                }
-                else
-                {
-                    return _database.InsertAsync(note);
-                }
-            }
-
-            public Task<int> DeleteNoteAsync(Note note)
-            {
-                return _database.DeleteAsync(note);
-            }
+        public Task<int> DeleteNoteAsync(PictureModel picture)
+        {
+            return _database.DeleteAsync(picture);
         }
     }
 }

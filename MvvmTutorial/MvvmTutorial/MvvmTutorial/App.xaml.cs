@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MvvmTutorial.Data;
+using System;
 using System.IO;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -16,7 +17,7 @@ namespace MvvmTutorial
                 if (database == null)
                 {
                     database = new PictureDb(Path.Combine(Environment.GetFolderPath
-                (Environment.SpecialFolder.LocalApplicationData), "Notes.db3"));
+                (Environment.SpecialFolder.LocalApplicationData), "Pictures.db3"));
                 }
                 return database;
             }
@@ -26,7 +27,7 @@ namespace MvvmTutorial
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage( new FirstTabbedPage());
+            MainPage = new NavigationPage(new FirstTabbedPage());
         }
 
         protected override void OnStart()

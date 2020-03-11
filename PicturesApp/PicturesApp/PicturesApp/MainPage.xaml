@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:PicturesApp.ViewModels;assembly=PicturesApp"
+             mc:Ignorable="d"
+             x:Class="PicturesApp.MainPage">
+    <ContentPage.BindingContext>
+        <vm:PictureViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout>
+            <Label FontSize="Header">Pictures</Label>
+            <ListView VerticalOptions="FillAndExpand" HasUnevenRows="true" ItemsSource="{Binding Pictures}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Vertical" Margin="20, 0, 20, 20" VerticalOptions="FillAndExpand">
+                                <Image MinimumHeightRequest="400" Source="{Binding Image}"  Aspect="Fill"></Image>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label HorizontalOptions="Start" Text="{Binding Title}"/>
+                                    <Label HorizontalOptions="EndAndExpand" Text="{Binding Date}"/>
+                                </StackLayout>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <StackLayout Orientation="Horizontal" >
+                <Button HorizontalOptions="FillAndExpand" Command="{Binding TakePictureCommand}" Text="Take a Picture"></Button>
+                <Button HorizontalOptions="FillAndExpand" Command="{Binding PickPictureCommand}" Text="Pick a Picture"></Button>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
