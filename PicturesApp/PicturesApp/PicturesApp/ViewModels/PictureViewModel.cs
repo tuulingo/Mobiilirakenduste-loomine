@@ -14,6 +14,14 @@ namespace PicturesApp.ViewModels
 {
     public class PictureViewModel : BindableObject
     {
+          
+        public PictureViewModel()
+        {
+            Pictures = new ObservableCollection<PictureModel>();
+            TakePictureCommand = new Command(OnTakePictureCommand);
+            PickPictureCommand = new Command(OnPickPictureCommand);
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected void OnPropertyChanged(string Name)
@@ -28,13 +36,7 @@ namespace PicturesApp.ViewModels
             return new string(Enumerable.Repeat(chars, length)
               .Select(s => s[random.Next(s.Length)]).ToArray());
         }
-
-        public PictureViewModel()
-        {
-            Pictures = new ObservableCollection<PictureModel>();
-            TakePictureCommand = new Command(OnTakePictureCommand);
-            PickPictureCommand = new Command(OnPickPictureCommand);
-        }
+        
 
         public ICommand TakePictureCommand { get; private set; }
         public ICommand PickPictureCommand { get; private set; }
@@ -64,6 +66,8 @@ namespace PicturesApp.ViewModels
             image.Title = RandomString(8);
             image.Date = DateTime.Now;
 
+            var picture = (PictureModel)BindingContext;
+
             image.Image = ImageSource.FromStream(() =>
             {
 
@@ -78,6 +82,7 @@ namespace PicturesApp.ViewModels
             });
 
             Pictures.Add(image);
+            //await App.Database.SavePicturesAsync(picture);
         }
 
         public async void OnTakePictureCommand()
