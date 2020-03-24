@@ -1,4 +1,6 @@
-﻿using System;
+﻿using PicturesApp.Data;
+using PicturesApp.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
@@ -19,5 +21,6 @@ namespace PicturesApp
         {
             InitializeComponent();
         }
+
     }
 }

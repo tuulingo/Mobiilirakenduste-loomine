@@ -1,4 +1,5 @@
-﻿using PicturesApp.Models;
+﻿using PicturesApp.Data;
+using PicturesApp.Models;
 using Plugin.Media;
 using Plugin.Media.Abstractions;
 using System;
@@ -20,6 +21,8 @@ namespace PicturesApp.ViewModels
             Pictures = new ObservableCollection<PictureModel>();
             TakePictureCommand = new Command(OnTakePictureCommand);
             PickPictureCommand = new Command(OnPickPictureCommand);
+            //DeletePictureCommand = new Command(OnDeletePictureCommand);
+            UpdateList();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -40,12 +43,38 @@ namespace PicturesApp.ViewModels
 
         public ICommand TakePictureCommand { get; private set; }
         public ICommand PickPictureCommand { get; private set; }
+       // public ICommand DeletePictureCommand { get; private set; }
 
 
         public ObservableCollection<PictureModel> Pictures
         {
             get; set;
         }
+
+        //public async void OnDeletePictureCommand()
+        //{
+        //    await CrossMedia.Current.Initialize();
+
+        //    var picture = (ImageData)BindingContext;
+        //    await App.Database.DeletePictureAsync(picture);
+
+        //    //List<ImageData> images = await App.Database.GetPicturesAsync();
+        //    //if (images.Count == 0)
+        //    //{
+        //    //    return;
+        //    //}
+        //    //else
+        //    //{
+        //    //    foreach (var image in images)
+        //    //    {
+        //    //        var imageModel = new PictureModel();
+        //    //        imageModel.Title = image.Title;
+        //    //        imageModel.Date = image.Date;
+        //    //        imageModel.Image = ImageSource.FromFile(image.Path);
+        //    //        await App.Database.DeletePictureAsync(image);
+        //    //    }
+        //    //}
+        //}
 
         public async void OnPickPictureCommand()
         {
@@ -62,27 +91,14 @@ namespace PicturesApp.ViewModels
                 PhotoSize = PhotoSize.Full
             });
 
-            var image = new PictureModel();
-            image.Title = RandomString(8);
-            image.Date = DateTime.Now;
-
             var picture = (PictureModel)BindingContext;
 
-            image.Image = ImageSource.FromStream(() =>
-            {
-
-                if (file != null)
-                {
-                    var stream = file.GetStream();
-                    file.Dispose();
-                    return stream;
-                }
-                return null;
-
-            });
-
-            Pictures.Add(image);
-            //await App.Database.SavePicturesAsync(picture);
+            var dbImage = new ImageData();
+            dbImage.Title = RandomString(10);
+            dbImage.Date = DateTime.Now;
+            dbImage.Path = file.Path.ToString();
+            await App.Database.SavePicturesAsync(dbImage);
+            AddToList();
         }
 
         public async void OnTakePictureCommand()
@@ -103,18 +119,42 @@ namespace PicturesApp.ViewModels
             if (file == null)
                 return;
 
-            var image = new PictureModel();
-            image.Title = RandomString(8);
+            var dbImage = new ImageData();
+            dbImage.Title = RandomString(10);
+            dbImage.Date = DateTime.Now;
+            dbImage.Path = file.Path.ToString();
+            await App.Database.SavePicturesAsync(dbImage);
+            AddToList();
+        }
+
+        private async void AddToList()
+        {
+            List<ImageData> images = await App.Database.GetPicturesAsync();
+            var image = images[images.Count - 1];
+            var imageModel = new PictureModel();
+            imageModel.Title = RandomString(10);
+            imageModel.Image = ImageSource.FromFile(image.Path);
             image.Date = DateTime.Now;
-
-
-            image.Image = ImageSource.FromStream(() =>
+            Pictures.Add(imageModel);
+        }
+        private async void UpdateList()
+        {
+            List<ImageData> images = await App.Database.GetPicturesAsync();
+            if (images.Count == 0)
             {
-                var stream = file.GetStream();
-                return stream;
-            });
-
-            Pictures.Add(image);
+                return;
+            }
+            else
+            {
+                foreach (var image in images)
+                {
+                    var imageModel = new PictureModel();
+                    imageModel.Title = image.Title;
+                    imageModel.Date = image.Date;
+                    imageModel.Image = ImageSource.FromFile(image.Path);
+                    Pictures.Add(imageModel);
+                }
+            }
         }
     }
 }

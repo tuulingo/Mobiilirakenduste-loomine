@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using PicturesApp.Data;
 using PicturesApp.Models;
 using SQLite;
 
@@ -13,22 +14,22 @@ namespace MvvmTutorial.Data
         public PictureDb(string dbPath)
         {
             _database = new SQLiteAsyncConnection(dbPath);
-            _database.CreateTableAsync<PictureModel>().Wait();
+            _database.CreateTableAsync<ImageData>().Wait();
         }
 
-        public Task<List<PictureModel>> GetPicturesAsync()
+        public Task<List<ImageData>> GetPicturesAsync()
         {
-            return _database.Table<PictureModel>().ToListAsync();
+            return _database.Table<ImageData>().ToListAsync();
         }
 
-        public Task<PictureModel> GetPictureAsync(int id)
+        public Task<ImageData> GetPictureAsync(int id)
         {
-            return _database.Table<PictureModel>()
+            return _database.Table<ImageData>()
                 .Where(x => x.ID == id)
                 .FirstOrDefaultAsync();
         }
 
-        public Task<int> SavePicturesAsync(PictureModel picture)
+        public Task<int> SavePicturesAsync(ImageData picture)
         {
             if (picture.ID != 0)
             {
@@ -40,7 +41,7 @@ namespace MvvmTutorial.Data
             }
         }
 
-        public Task<int> DeleteNoteAsync(PictureModel picture)
+        public Task<int> DeletePictureAsync(ImageData picture)
         {
             return _database.DeleteAsync(picture);
         }
