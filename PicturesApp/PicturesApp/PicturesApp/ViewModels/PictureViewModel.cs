@@ -22,7 +22,7 @@ namespace PicturesApp.ViewModels
             TakePictureCommand = new Command(OnTakePictureCommand);
             PickPictureCommand = new Command(OnPickPictureCommand);
             //DeletePictureCommand = new Command(OnDeletePictureCommand);
-            UpdateList();
+            DisplayOnLoad();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -58,22 +58,6 @@ namespace PicturesApp.ViewModels
         //    var picture = (ImageData)BindingContext;
         //    await App.Database.DeletePictureAsync(picture);
 
-        //    //List<ImageData> images = await App.Database.GetPicturesAsync();
-        //    //if (images.Count == 0)
-        //    //{
-        //    //    return;
-        //    //}
-        //    //else
-        //    //{
-        //    //    foreach (var image in images)
-        //    //    {
-        //    //        var imageModel = new PictureModel();
-        //    //        imageModel.Title = image.Title;
-        //    //        imageModel.Date = image.Date;
-        //    //        imageModel.Image = ImageSource.FromFile(image.Path);
-        //    //        await App.Database.DeletePictureAsync(image);
-        //    //    }
-        //    //}
         //}
 
         public async void OnPickPictureCommand()
@@ -137,7 +121,7 @@ namespace PicturesApp.ViewModels
             image.Date = DateTime.Now;
             Pictures.Add(imageModel);
         }
-        private async void UpdateList()
+        private async void DisplayOnLoad()
         {
             List<ImageData> images = await App.Database.GetPicturesAsync();
             if (images.Count == 0)

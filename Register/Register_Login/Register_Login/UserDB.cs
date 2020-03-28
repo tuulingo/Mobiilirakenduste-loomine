@@ -67,8 +67,7 @@ namespace Register_Login
                 _SQLiteConnection.Update(d1);
                 return true;
             }
-            else
-                return false;
+
         }
         public bool LoginValidate(string userName1, string pwd1)
         {

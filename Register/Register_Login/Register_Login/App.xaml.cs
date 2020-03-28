@@ -11,6 +11,7 @@ namespace Register_Login
             InitializeComponent();
 
             MainPage = new MainPage();
+            new NavigationPage(new HomePage());
         }
 
         protected override void OnStart()

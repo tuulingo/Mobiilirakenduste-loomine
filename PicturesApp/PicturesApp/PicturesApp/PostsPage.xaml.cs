@@ -16,7 +16,6 @@ namespace PicturesApp
     [DesignTimeVisible(false)]
     public partial class MainPage : ContentPage
     {
-        string _fileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "pictures");
         public MainPage()
         {
             InitializeComponent();

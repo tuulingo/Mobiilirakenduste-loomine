@@ -1,4 +1,5 @@
 ﻿using MvvmTutorial.Data;
+using PicturesApp.Data;
 using System;
 using System.IO;
 using Xamarin.Forms;
@@ -22,11 +23,25 @@ namespace PicturesApp
             }
         }
 
+        static UserDb userDatabase;
+        public static UserDb UserDatabase
+        {
+            get
+            {
+                if (userDatabase == null)
+                {
+                    userDatabase = new UserDb(Path.Combine(Environment.GetFolderPath
+                (Environment.SpecialFolder.LocalApplicationData), "users.db3"));
+                }
+                return userDatabase;
+            }
+        }
+
         public App()
         {
             InitializeComponent();
-
-            MainPage = new MainPage();
+            MainPage = new LoginPage();
+            new NavigationPage(new MyTabbedPage());
         }
 
         protected override void OnStart()
