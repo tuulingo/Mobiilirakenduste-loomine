@@ -1,4 +1,5 @@
 ﻿using PicturesApp.Data;
+using PicturesApp.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,25 +18,29 @@ namespace PicturesApp
         {
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this.loginPage, true);
-            userNameEntry.ReturnCommand = new Command(() => passwordEntry.Focus());
+            EmailEntry.ReturnCommand = new Command(() => passwordEntry.Focus());
         }
 
         private async void LoginButton_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushModalAsync(new NavigationPage(new MyTabbedPage()));
-            if (userNameEntry.Text != null && passwordEntry.Text != null)
+            if (EmailEntry.Text != null && passwordEntry.Text != null)
             {
-                string username = userNameEntry.Text;
+                string username = EmailEntry.Text;
                 string password = passwordEntry.Text;
-
-                var validData = App.UserDatabase.LoginValidate(userNameEntry.Text, passwordEntry.Text);
-                if (validData)
+                List<UserModel> users = await App.UserDatabase.GetUsers();
+                foreach (var user in users)
                 {
-                    await Navigation.PushModalAsync(new NavigationPage(new MyTabbedPage()));
-                }
-                else
-                {
-                    await DisplayAlert("Login Failed", "Username or Password Incorrect", "OK");
+                    var validData = App.UserDatabase.LoginValidate(EmailEntry.Text, passwordEntry.Text);
+                    if (validData)
+                    {
+                        var myTabbedPage = new MyTabbedPage();
+                        myTabbedPage.BindingContext = user;
+                        await Navigation.PushModalAsync(new NavigationPage(new MyTabbedPage()));
+                    }
+                    else
+                    {
+                        await DisplayAlert("Login Failed", "Username or Password Incorrect", "OK");
+                    }
                 }
             }
         }

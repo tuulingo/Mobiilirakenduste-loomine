@@ -41,8 +41,8 @@ namespace PicturesApp
             }
             else
             {
-                users.Name = emailEntry.Text;
-                users.UserName = userNameEntry.Text;
+                users.Name = userNameEntry.Text;
+                users.Email = emailEntry.Text;
                 users.Password = passwordEntry.Text;
                 try
                 {
@@ -50,7 +50,7 @@ namespace PicturesApp
                     if (returnvalue == "Sucessfully Added")
                     {
                         await DisplayAlert("User Add", returnvalue, "OK");
-                        await Navigation.PushAsync(new LoginPage());
+                        await Navigation.PushAsync(new MainPage());
                     }
                     else
                     {
@@ -61,7 +61,7 @@ namespace PicturesApp
                         passwordEntry.Text = string.Empty;
                         confirmpasswordEntry.Text = string.Empty;
                     }
-                }
+                }                
                 catch (Exception ex)
                 {
                     Debug.WriteLine(ex);

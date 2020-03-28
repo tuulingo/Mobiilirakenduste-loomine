@@ -16,5 +16,6 @@ namespace PicturesApp
         {
             InitializeComponent();
         }
+
     }
 }

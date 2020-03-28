@@ -32,7 +32,7 @@ namespace PicturesApp.Data
         public string AddUser(UserModel user)
         {
             var data = _database.Table<UserModel>();
-            var d1 = data.Where(x => x.Name == user.Name && x.UserName == user.UserName).FirstOrDefaultAsync();
+            var d1 = data.Where(x => x.Name == user.Name && x.Email == user.Email).FirstOrDefaultAsync();
             if (d1 == null)
             {
                 _database.InsertAsync(user);

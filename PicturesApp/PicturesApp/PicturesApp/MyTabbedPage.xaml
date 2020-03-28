@@ -4,9 +4,11 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="PicturesApp.MyTabbedPage">
+             x:Class="PicturesApp.MyTabbedPage"
+             xmlns:local="clr-namespace:PicturesApp;assembly=PicturesApp"
+             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+             android:TabbedPage.ToolbarPlacement="Bottom">
   <!--Pages can be added as references or inline-->
-  <ContentPage Title="Tab 1" />
-  <ContentPage Title="Tab 2" />
-  <ContentPage Title="Tab 3" />
+    <local:MainPage Title="Posts" />
+    <local:UserPage Title="{Binding UserName}" />
 </TabbedPage>
