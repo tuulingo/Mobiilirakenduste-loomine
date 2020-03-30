@@ -29,13 +29,13 @@ namespace PicturesApp.Data
         {
            return await _database.DeleteAsync<UserModel>(id);
         }
-        public string AddUser(UserModel user)
+        public async Task<string> AddUser(UserModel user)
         {
             var data = _database.Table<UserModel>();
-            var d1 = data.Where(x => x.Name == user.Name && x.Email == user.Email).FirstOrDefaultAsync();
+            var d1 = await data.Where(x => x.Name == user.Name && x.Email == user.Email).FirstOrDefaultAsync();
             if (d1 == null)
             {
-                _database.InsertAsync(user);
+                await _database.InsertAsync(user);
                 return "Sucessfully Added";
             }
             else

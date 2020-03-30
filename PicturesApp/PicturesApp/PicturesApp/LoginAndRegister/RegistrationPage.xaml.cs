@@ -46,7 +46,7 @@ namespace PicturesApp
                 users.Password = passwordEntry.Text;
                 try
                 {
-                    var returnvalue = App.UserDatabase.AddUser(users);
+                    var returnvalue = await App.UserDatabase.AddUser(users);
                     if (returnvalue == "Sucessfully Added")
                     {
                         await DisplayAlert("User Add", returnvalue, "OK");
