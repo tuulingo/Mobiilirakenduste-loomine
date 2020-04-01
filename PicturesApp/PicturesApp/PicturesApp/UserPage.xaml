@@ -4,12 +4,14 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="PicturesApp.UserPage">
+             x:Class="PicturesApp.UserPage"
+             xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Label Text="Username" Margin="30, 0, 30 ,0"></Label>
+            <Entry x:Name="UserNameEntry" Text="{Binding Name}" Margin="30, 0, 30 ,0" Placeholder="Username"></Entry>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
+<!--<controls:CircleImage x:Name="ProfilePicture"  HeightRequest="160" WidthRequest="160" HorizontalOptions="Center" VerticalOptions="Center"></controls:CircleImage>-->
+    

@@ -35,7 +35,7 @@ namespace PicturesApp
                     {
                         var myTabbedPage = new MyTabbedPage();
                         myTabbedPage.BindingContext = user;
-                        await Navigation.PushModalAsync(new NavigationPage(new MyTabbedPage()));
+                        await Navigation.PushModalAsync(new NavigationPage(myTabbedPage));
                     }
                     else
                     {

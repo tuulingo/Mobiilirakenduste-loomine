@@ -15,6 +15,7 @@ namespace PicturesApp
         public UserPage()
         {
             InitializeComponent();
+            
         }
     }
 }
