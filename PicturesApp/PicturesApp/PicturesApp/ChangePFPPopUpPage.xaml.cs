@@ -11,13 +11,12 @@ using Xamarin.Forms.Xaml;
 namespace PicturesApp
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ChangeProfilePicturePopUpPage : PopupPage
+    public partial class ChangePFPPopUpPage : PopupPage
     {
-        public ChangeProfilePicturePopUpPage()
+        public ChangePFPPopUpPage()
         {
             InitializeComponent();
         }
-
         protected override void OnAppearing()
         {
             base.OnAppearing();

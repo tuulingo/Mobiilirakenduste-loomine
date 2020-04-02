@@ -22,7 +22,13 @@ namespace PicturesApp
 
         private async void ShowPopup(object sender, EventArgs e)
         {
-           await PopupNavigation.Instance.PushAsync(new ChangeProfilePicturePopUpPage());
+           await PopupNavigation.Instance.PushAsync(new ChangePFPPopUpPage());
+        }
+
+        private async void Logout_Clicked(object sender, EventArgs e)
+        {
+            await DisplayAlert("Quit", "You want Quit", "OK");
+            await Navigation.PushModalAsync(new LoginPage());
         }
     }
 }

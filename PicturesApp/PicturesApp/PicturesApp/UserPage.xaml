@@ -6,12 +6,17 @@
              mc:Ignorable="d"
              x:Class="PicturesApp.UserPage"
              xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Logout" Priority="1" Clicked="Logout_Clicked"/>
+    </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout>
-            <controls:CircleImage x:Name="ProfilePicture" Source="{Binding ProfilePicturePath}" HeightRequest="160" WidthRequest="160" HorizontalOptions="Center" VerticalOptions="Center" Aspect="AspectFill" BorderColor="Black" BorderThickness="2"></controls:CircleImage>
+            <controls:CircleImage x:Name="ProfilePicture" Source="{Binding ProfilePicturePath}" Margin="0, 20, 0 ,0" HeightRequest="160" WidthRequest="160" HorizontalOptions="Center" VerticalOptions="Center" Aspect="AspectFill" BorderColor="Black" BorderThickness="2"></controls:CircleImage>
             <Button Clicked="ShowPopup" x:Name="ChangePFP" Text="Change Profile Photo" Font="Small" HorizontalOptions="Center" Margin="0, 0, 0, 30"></Button>
             <Label Text="Username" Margin="30, 0, 30 ,0"></Label>
             <Entry x:Name="UserNameEntry" Text="{Binding Name}" Margin="30, 0, 30 ,0" Placeholder="Username"></Entry>
+            <Label Text="Email" Margin="30, 30, 30 ,0"></Label>
+            <Label Text="{Binding Email}" Margin="32, 15, 30 ,0" FontSize="20" FontAttributes="Bold" ></Label>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

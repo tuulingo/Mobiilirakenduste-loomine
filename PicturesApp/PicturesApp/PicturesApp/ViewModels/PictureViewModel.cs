@@ -74,6 +74,10 @@ namespace PicturesApp.ViewModels
             {
                 PhotoSize = PhotoSize.Full
             });
+            if (file == null)
+            {
+                return;
+            }
 
             var picture = (PictureModel)BindingContext;
 

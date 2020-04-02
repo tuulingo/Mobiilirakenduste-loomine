@@ -11,10 +11,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <EmbeddedResource Remove="ChangeProfilePicturePopUpPage.xaml" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Rg.Plugins.Popup" Version="1.2.0.223" />
     <PackageReference Include="sqlite-net" Version="1.6.292" />
     <PackageReference Include="sqlite-net-pcl" Version="1.6.292" />
@@ -25,16 +21,15 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ApplicationDefinition Include="ChangeProfilePicturePopUpPage.xaml" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Compile Update="PostsPage.xaml.cs">
       <DependentUpon>PostsPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Update="ChangePFPPopUpPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="LoginAndRegister\LoginPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
