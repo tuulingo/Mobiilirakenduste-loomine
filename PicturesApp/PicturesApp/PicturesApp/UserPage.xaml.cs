@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Rg.Plugins.Popup.Pages;
+using Rg.Plugins.Popup.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,6 +18,11 @@ namespace PicturesApp
         {
             InitializeComponent();
             
+        }
+
+        private async void ShowPopup(object sender, EventArgs e)
+        {
+           await PopupNavigation.Instance.PushAsync(new ChangeProfilePicturePopUpPage());
         }
     }
 }
