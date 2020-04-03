@@ -17,6 +17,7 @@
             <Entry x:Name="UserNameEntry" Text="{Binding Name}" Margin="30, 0, 30 ,0" Placeholder="Username"></Entry>
             <Label Text="Email" Margin="30, 30, 30 ,0"></Label>
             <Label Text="{Binding Email}" Margin="32, 15, 30 ,0" FontSize="20" FontAttributes="Bold" ></Label>
+            <Button Text="Save changes" Clicked="SaveChanges_Clicked" VerticalOptions="EndAndExpand" Margin="20, 0, 20, 0"></Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

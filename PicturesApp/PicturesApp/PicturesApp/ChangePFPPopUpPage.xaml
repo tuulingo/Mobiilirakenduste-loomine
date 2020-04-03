@@ -26,8 +26,8 @@
                  VerticalOptions="Center">
         <StackLayout>
             <Label Text="Change Profile Photo" FontAttributes="Bold" TextColor="Black" FontSize="20"></Label>
-            <Button Text="Pick a Profile Picture" FontSize="14" ></Button>
-            <Button Text="Take a Profile Picture" FontSize="14" ></Button>
+            <Button Text="Pick a Profile Picture" FontSize="14" Clicked="PickaProfile_Clicked"></Button>
+            <Button Text="Take a Profile Picture" FontSize="14" Clicked="TakeaProfile_Clicked"></Button>
         </StackLayout>
     </StackLayout>
 </pages:PopupPage>

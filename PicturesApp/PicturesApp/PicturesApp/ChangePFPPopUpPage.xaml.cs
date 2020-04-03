@@ -1,4 +1,6 @@
-﻿using Rg.Plugins.Popup.Pages;
+﻿using Plugin.Media;
+using Plugin.Media.Abstractions;
+using Rg.Plugins.Popup.Pages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +27,28 @@ namespace PicturesApp
         protected override void OnDisappearing()
         {
             base.OnDisappearing();
+        }
+
+        private async void PickaProfile_Clicked(object sender, EventArgs e)
+        {
+            await CrossMedia.Current.Initialize();
+
+            if (!CrossMedia.Current.IsPickPhotoSupported)
+            {
+                await Application.Current.MainPage.DisplayAlert("Photos Not supported", "Permission not granted", "Ok");
+                return;
+            }
+
+            var file = await CrossMedia.Current.PickPhotoAsync(new Plugin.Media.Abstractions.PickMediaOptions
+            {
+                PhotoSize = PhotoSize.Full
+            });
+            if (file == null)
+            {
+                return;
+            }
+            else
+                ProfilePicture.Source
         }
 
         // ### Methods for supporting animations in your popup page ###
@@ -87,6 +111,11 @@ namespace PicturesApp
         {
             // Return false if you don't want to close this popup page when a background of the popup page is clicked
             return base.OnBackgroundClicked();
+        }
+
+        private void Button_Clicked(object sender, EventArgs e)
+        {
+
         }
     }
 }

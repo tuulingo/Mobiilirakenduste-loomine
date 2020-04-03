@@ -17,19 +17,19 @@ namespace PicturesApp.Data
             _database = new SQLiteAsyncConnection(dbPath);
             _database.CreateTableAsync<UserModel>().Wait();
         }
-        public async Task<List<UserModel>> GetUsers()
+        public async Task<List<UserModel>> GetUsersAsync()
         {
             return await _database.Table<UserModel>().ToListAsync();
         }
-        public async Task<UserModel> GetSpecificUser(int id)
+        public async Task<UserModel> GetSpecificUserAsync(int id)
         {
             return await _database.Table<UserModel>().FirstOrDefaultAsync(t => t.Id == id);
         }
-        public async Task<int> DeleteUser(int id)
+        public async Task<int> DeleteUserAsync(int id)
         {
            return await _database.DeleteAsync<UserModel>(id);
         }
-        public async Task<string> AddUser(UserModel user)
+        public async Task<string> AddUserAsync(UserModel user)
         {
             var data = _database.Table<UserModel>();
             var d1 = await data.Where(x => x.Name == user.Name && x.Email == user.Email).FirstOrDefaultAsync();
@@ -51,6 +51,16 @@ namespace PicturesApp.Data
             }
             else
                 return false;
+        }
+
+        public Task<int> SaveUserAsync(UserModel user)
+        {
+            if (user.Id != 0)
+            {
+                return _database.UpdateAsync(user);
+            }
+            else
+                return _database.InsertAsync(user);
         }
     }
 }

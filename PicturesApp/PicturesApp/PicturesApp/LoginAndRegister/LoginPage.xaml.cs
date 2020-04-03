@@ -27,7 +27,7 @@ namespace PicturesApp
             {
                 string username = EmailEntry.Text;
                 string password = passwordEntry.Text;
-                List<UserModel> users = await App.UserDatabase.GetUsers();
+                List<UserModel> users = await App.UserDatabase.GetUsersAsync();
                 foreach (var user in users)
                 {
                     var validData = App.UserDatabase.LoginValidate(EmailEntry.Text, passwordEntry.Text);

@@ -1,4 +1,5 @@
-﻿using Rg.Plugins.Popup.Pages;
+﻿using PicturesApp.Models;
+using Rg.Plugins.Popup.Pages;
 using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,7 @@ namespace PicturesApp
         public UserPage()
         {
             InitializeComponent();
+            ProfilePicture.BindingContext = new ChangePFPPopUpPage();
             
         }
 
@@ -29,6 +31,29 @@ namespace PicturesApp
         {
             await DisplayAlert("Quit", "You want Quit", "OK");
             await Navigation.PushModalAsync(new LoginPage());
+        }
+
+        public async void SaveChanges_Clicked(object sender, EventArgs e)
+        {
+            var user = (UserModel)BindingContext;
+            if (user.Name == null || user.Name == "")
+            {
+                await DisplayAlert("Invalid Info", "Invalid Username", "OK");
+            }
+            else
+            {
+                user.Name = UserNameEntry.Text;
+                var path = ProfilePicture.Source;
+                if (path != null)
+                {
+                    var pathToString = path.ToString();
+                    user.ProfilePicturePath = pathToString;
+                    return;
+                }
+
+                await App.UserDatabase.SaveUserAsync(user);
+                await DisplayAlert("Save Changes", "Changes saved", "OK");
+            }
         }
     }
 }
