@@ -44,6 +44,7 @@ namespace PicturesApp
                 users.Name = userNameEntry.Text;
                 users.Email = emailEntry.Text;
                 users.Password = passwordEntry.Text;
+                //users.ProfilePicturePath = ImageSource.
                 try
                 {
                     var returnvalue = await App.UserDatabase.AddUserAsync(users);

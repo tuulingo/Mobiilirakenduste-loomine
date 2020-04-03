@@ -1,6 +1,8 @@
-﻿using Plugin.Media;
+﻿using PicturesApp.Models;
+using Plugin.Media;
 using Plugin.Media.Abstractions;
 using Rg.Plugins.Popup.Pages;
+using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,18 +40,60 @@ namespace PicturesApp
                 await Application.Current.MainPage.DisplayAlert("Photos Not supported", "Permission not granted", "Ok");
                 return;
             }
-
             var file = await CrossMedia.Current.PickPhotoAsync(new Plugin.Media.Abstractions.PickMediaOptions
             {
                 PhotoSize = PhotoSize.Full
             });
             if (file == null)
             {
+                await PopupNavigation.Instance.PopAsync(true);
                 return;
             }
             else
-                ProfilePicture.Source
+            {
+                var user = new UserModel();
+
+                var fileToString = file.ToString();
+                user.ProfilePicturePath = fileToString;
+                await App.UserDatabase.SaveUserAsync(user);
+            }
+
+            await PopupNavigation.Instance.PopAsync(true);
         }
+
+        private async void TakeaProfile_Clicked(object sender, EventArgs e)
+        {
+            await CrossMedia.Current.Initialize();
+
+            if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
+            {
+                await Application.Current.MainPage.DisplayAlert("Alert", "Camera can't be opened right now", "OK");
+                return;
+            }
+
+            var file = await CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions
+            {
+                Directory = "Sample",
+                Name = "test.jpg"
+            });
+            if (file == null)
+            {
+                await PopupNavigation.Instance.PopAsync(true);
+                return;
+            }
+            else
+            {
+                var user = new UserModel();
+
+                var fileToString = file.Path.ToString();
+                user.ProfilePicturePath = fileToString;
+                await App.UserDatabase.SaveUserAsync(user);
+            }
+
+            await PopupNavigation.Instance.PopAsync(true);
+        }
+
+
 
         // ### Methods for supporting animations in your popup page ###
 

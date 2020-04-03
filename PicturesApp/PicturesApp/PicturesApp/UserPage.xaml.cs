@@ -43,13 +43,14 @@ namespace PicturesApp
             else
             {
                 user.Name = UserNameEntry.Text;
-                var path = ProfilePicture.Source;
-                if (path != null)
-                {
-                    var pathToString = path.ToString();
-                    user.ProfilePicturePath = pathToString;
-                    return;
-                }
+                var userpfp = user.ProfilePicturePath;
+                ProfilePicture.Source = userpfp;
+                //if (path != null)
+                //{
+                //    var pathToString = path.ToString();
+                //    user.ProfilePicturePath = pathToString;
+                //    return;
+                //}
 
                 await App.UserDatabase.SaveUserAsync(user);
                 await DisplayAlert("Save Changes", "Changes saved", "OK");
