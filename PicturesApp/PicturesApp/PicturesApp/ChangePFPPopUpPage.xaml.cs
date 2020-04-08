@@ -51,9 +51,9 @@ namespace PicturesApp
             }
             else
             {
-                var user = new UserModel();
+                var user = (UserModel)BindingContext;
 
-                var fileToString = file.ToString();
+                var fileToString = file.Path.ToString();
                 user.ProfilePicturePath = fileToString;
                 await App.UserDatabase.SaveUserAsync(user);
             }

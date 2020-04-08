@@ -79,7 +79,6 @@ namespace PicturesApp.ViewModels
                 return;
             }
 
-            var picture = (PictureModel)BindingContext;
 
             var dbImage = new ImageData();
             dbImage.Title = RandomString(10);
@@ -117,11 +116,17 @@ namespace PicturesApp.ViewModels
 
         private async void AddToList()
         {
+            
             List<ImageData> images = await App.Database.GetPicturesAsync();
+            List<UserModel> users = await App.UserDatabase.GetUsersAsync();
             var image = images[images.Count - 1];
+            var user = users[users.Count - 1];
             var imageModel = new PictureModel();
+            var userModel = new UserModel();
             imageModel.Title = RandomString(10);
             imageModel.Image = ImageSource.FromFile(image.Path);
+            imageModel.Name = userModel.Name;
+            imageModel.PostProfilePic = ImageSource.FromFile(user.ProfilePicturePath);
             image.Date = DateTime.Now;
             Pictures.Add(imageModel);
         }

@@ -13,6 +13,9 @@ namespace PicturesApp.Models
         public string Title { get; set; }
         public DateTime Date { get; set; }
         public ImageSource Image { get; set; }
+        public string Name { get; set; }
+        public ImageSource PostProfilePic { get; set; }
+
     }
 
 }
