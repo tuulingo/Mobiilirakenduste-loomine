@@ -51,7 +51,7 @@ namespace PicturesApp
             }
             else
             {
-                var user = (UserModel)BindingContext;
+                var user = App.LoggedInUser;
 
                 var fileToString = file.Path.ToString();
                 user.ProfilePicturePath = fileToString;
@@ -83,7 +83,7 @@ namespace PicturesApp
             }
             else
             {
-                var user = new UserModel();
+                var user = App.LoggedInUser;
 
                 var fileToString = file.Path.ToString();
                 user.ProfilePicturePath = fileToString;

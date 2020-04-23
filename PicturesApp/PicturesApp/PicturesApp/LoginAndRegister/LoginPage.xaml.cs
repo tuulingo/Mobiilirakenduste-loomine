@@ -34,7 +34,7 @@ namespace PicturesApp
                     if (validData)
                     {
                         var myTabbedPage = new MyTabbedPage();
-                        myTabbedPage.BindingContext = user;
+                        App.LoggedInUser = user;
                         await Navigation.PushModalAsync(new NavigationPage(myTabbedPage));
                     }
                     else

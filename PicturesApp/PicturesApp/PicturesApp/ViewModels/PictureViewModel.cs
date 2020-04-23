@@ -118,16 +118,14 @@ namespace PicturesApp.ViewModels
         {
             
             List<ImageData> images = await App.Database.GetPicturesAsync();
-            List<UserModel> users = await App.UserDatabase.GetUsersAsync();
             var image = images[images.Count - 1];
-            var user = users[users.Count - 1];
+            var user = App.LoggedInUser;
             var imageModel = new PictureModel();
-            var userModel = new UserModel();
             imageModel.Title = RandomString(10);
             imageModel.Image = ImageSource.FromFile(image.Path);
-            imageModel.Name = userModel.Name;
+            imageModel.Name = user.Name;
             imageModel.PostProfilePic = ImageSource.FromFile(user.ProfilePicturePath);
-            image.Date = DateTime.Now;
+            imageModel.Date = DateTime.Now;
             Pictures.Add(imageModel);
         }
         private async void DisplayOnLoad()
@@ -145,6 +143,8 @@ namespace PicturesApp.ViewModels
                     imageModel.Title = image.Title;
                     imageModel.Date = image.Date;
                     imageModel.Image = ImageSource.FromFile(image.Path);
+                    imageModel.PostProfilePic = image.PostProfilePic;
+                    imageModel.Name = image.Name;
                     Pictures.Add(imageModel);
                 }
             }

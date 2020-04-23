@@ -19,6 +19,7 @@ namespace PicturesApp
         {
             InitializeComponent();
             ProfilePicture.BindingContext = new ChangePFPPopUpPage();
+            BindingContext = App.LoggedInUser;
             
         }
 
@@ -35,7 +36,7 @@ namespace PicturesApp
 
         public async void SaveChanges_Clicked(object sender, EventArgs e)
         {
-            var user = (UserModel)BindingContext;
+            var user = App.LoggedInUser;
             if (user.Name == null || user.Name == "")
             {
                 await DisplayAlert("Invalid Info", "Invalid Username", "OK");
@@ -45,16 +46,13 @@ namespace PicturesApp
                 user.Name = UserNameEntry.Text;
                 var userpfp = user.ProfilePicturePath;
                 ProfilePicture.Source = userpfp;
-                //if (path != null)
-                //{
-                //    var pathToString = path.ToString();
-                //    user.ProfilePicturePath = pathToString;
-                //    return;
-                //}
+
 
                 await App.UserDatabase.SaveUserAsync(user);
                 await DisplayAlert("Save Changes", "Changes saved", "OK");
             }
         }
+
+        
     }
 }

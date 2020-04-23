@@ -1,5 +1,6 @@
 ﻿using MvvmTutorial.Data;
 using PicturesApp.Data;
+using PicturesApp.Models;
 using System;
 using System.IO;
 using Xamarin.Forms;
@@ -36,6 +37,8 @@ namespace PicturesApp
                 return userDatabase;
             }
         }
+
+        public static UserModel LoggedInUser{ get; set; }
 
         public App()
         {

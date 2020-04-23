@@ -11,6 +11,8 @@ namespace PicturesApp.Data
         public int ID { get; set; }
         public string Title { get; set; }
         public DateTime Date { get; set; }
-        public String Path { get; set; }
+        public string Path { get; set; }
+        public string Name { get; set; }
+        public string PostProfilePic { get; set; }
     }
 }
