@@ -20,9 +20,9 @@
                             <StackLayout Orientation="Vertical" Margin="20, 0, 20, 20" VerticalOptions="FillAndExpand">
                                 <StackLayout Orientation="Horizontal">
                                     <controls:CircleImage x:Name="ProfilePicture" Source="{Binding ProfilePicturePath}" Margin="30, 20, 0 ,10" HeightRequest="50" WidthRequest="50" HorizontalOptions="Center" VerticalOptions="Center" Aspect="AspectFill" BorderColor="Black" BorderThickness="2"></controls:CircleImage>
-                                    <Label HorizontalOptions="Start" FontAttributes="Bold" FontSize="12" Text="{Binding Name}"/>
+                                    <Label HorizontalOptions="Start" FontAttributes="Bold" FontSize="24" Margin="0, 30, 0, 0" Text="{Binding Name}"/>
                                 </StackLayout>
-                                <Image MinimumHeightRequest="400" Source="{Binding Image}"  Aspect="Fill"></Image>
+                                <Image WidthRequest="600" HeightRequest="600" Source="{Binding Image}"  Aspect="Fill"></Image>
                                 <StackLayout Orientation="Horizontal">
                                     <Label HorizontalOptions="Start" Text="{Binding Title}"/>
                                     <Label HorizontalOptions="EndAndExpand" Text="{Binding Date}"/>

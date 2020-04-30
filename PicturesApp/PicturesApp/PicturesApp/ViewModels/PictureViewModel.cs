@@ -139,12 +139,13 @@ namespace PicturesApp.ViewModels
             {
                 foreach (var image in images)
                 {
+                    var user = App.LoggedInUser;
                     var imageModel = new PictureModel();
                     imageModel.Title = image.Title;
                     imageModel.Date = image.Date;
                     imageModel.Image = ImageSource.FromFile(image.Path);
                     imageModel.PostProfilePic = image.PostProfilePic;
-                    imageModel.Name = image.Name;
+                    imageModel.Name = user.Name;
                     Pictures.Add(imageModel);
                 }
             }

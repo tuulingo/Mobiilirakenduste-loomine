@@ -28,11 +28,11 @@ namespace PicturesApp
            await PopupNavigation.Instance.PushAsync(new ChangePFPPopUpPage());
         }
 
-        private async void Logout_Clicked(object sender, EventArgs e)
-        {
-            await DisplayAlert("Quit", "You want Quit", "OK");
-            await Navigation.PushModalAsync(new LoginPage());
-        }
+        //private async void Logout_Clicked(object sender, EventArgs e)
+        //{
+        //    await DisplayAlert("Quit", "You want Quit", "OK");
+        //    await Navigation.PushModalAsync(new LoginPage());
+        //}
 
         public async void SaveChanges_Clicked(object sender, EventArgs e)
         {

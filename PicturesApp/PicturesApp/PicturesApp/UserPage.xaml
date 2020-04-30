@@ -6,9 +6,9 @@
              mc:Ignorable="d"
              x:Class="PicturesApp.UserPage"
              xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin">
-    <ContentPage.ToolbarItems>
+    <!--<ContentPage.ToolbarItems>
         <ToolbarItem Text="Logout" Priority="1" Clicked="Logout_Clicked"/>
-    </ContentPage.ToolbarItems>
+    </ContentPage.ToolbarItems>-->
     <ContentPage.Content>
         <StackLayout>
             <controls:CircleImage x:Name="ProfilePicture" Source="{Binding ProfilePicturePath}" Margin="0, 20, 0 ,0" HeightRequest="160" WidthRequest="160" HorizontalOptions="Center" VerticalOptions="Center" Aspect="AspectFill" BorderColor="Black" BorderThickness="2"></controls:CircleImage>

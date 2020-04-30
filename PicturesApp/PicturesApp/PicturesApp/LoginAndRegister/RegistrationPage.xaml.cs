@@ -51,7 +51,7 @@ namespace PicturesApp
                     if (returnvalue == "Sucessfully Added")
                     {
                         await DisplayAlert("User Add", returnvalue, "OK");
-                        await Navigation.PushAsync(new MainPage());
+                        await Navigation.PushModalAsync(new LoginPage());
                     }
                     else
                     {
